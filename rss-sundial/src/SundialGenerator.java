@@ -117,9 +117,16 @@ public class SundialGenerator {
 		JButton btnGenerateSundial = new JButton("Generate Sundial");
 		btnGenerateSundial.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				double longitude = Double.parseDouble(txtEnterLongitudeHere.getText());
-				double latitude = Double.parseDouble(txtEnterLatitudeHere.getText());
-				
+				try
+				{
+					double longitude = Double.parseDouble(txtEnterLongitudeHere.getText());
+					double latitude = Double.parseDouble(txtEnterLatitudeHere.getText());
+				}
+				catch (NumberFormatException e)
+				{
+					lblStatusReady.setText("Status: Please enter numerical digits as longitude and latitude values!");
+				}
+					
 				if (Math.abs(longitude) > 180)
 				{
 					lblStatusReady.setText("Status: Invalid longitude!");
