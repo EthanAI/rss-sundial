@@ -2,18 +2,10 @@ import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 import com.jgoodies.forms.factories.FormFactory;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JTextField;
-import java.awt.BorderLayout;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import javax.swing.JPanel;
-import java.awt.Font;
-import javax.swing.JButton;
-import java.awt.EventQueue;
-import javax.swing.JFrame;
-import javax.swing.JSplitPane;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.lang.*;
 
 public class SundialGenerator {
 
@@ -56,9 +48,6 @@ public class SundialGenerator {
 		lblSundialGenerator.setFont(new Font("Tahoma", Font.BOLD, 27));
 		lblSundialGenerator.setHorizontalAlignment(SwingConstants.CENTER);
 		frame.getContentPane().add(lblSundialGenerator, BorderLayout.NORTH);
-		
-		JButton btnGenerateSundial = new JButton("Generate Sundial");
-		frame.getContentPane().add(btnGenerateSundial, BorderLayout.SOUTH);
 		
 		JPanel panel = new JPanel();
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
@@ -124,5 +113,27 @@ public class SundialGenerator {
 		
 		JLabel lblMesaVerdeReseach = new JLabel("Mesa Verde Research Group");
 		panel.add(lblMesaVerdeReseach, "1, 17, center, default");
+		
+		JButton btnGenerateSundial = new JButton("Generate Sundial");
+		btnGenerateSundial.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				double longitude = Double.parseDouble(txtEnterLongitudeHere.getText());
+				double latitude = Double.parseDouble(txtEnterLatitudeHere.getText());
+				
+				if (Math.abs(longitude) > 180)
+				{
+					lblStatusReady.setText("Status: Invalid longitude!");
+				}
+				else if (Math.abs(latitude) > 90)
+				{
+					lblStatusReady.setText("Status: Invalid latitude!");
+				}
+				else
+				{
+					lblStatusReady.setText("Status: Drawing..");
+				}
+			}
+		});
+		frame.getContentPane().add(btnGenerateSundial, BorderLayout.SOUTH);
 	}
 }
