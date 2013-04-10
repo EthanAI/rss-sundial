@@ -5,7 +5,7 @@ import com.jgoodies.forms.factories.FormFactory;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-
+//Test edit by ES 4.10.13
 public class SundialGenerator {
 
 	private JFrame frame;
