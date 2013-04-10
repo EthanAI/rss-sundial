@@ -5,7 +5,6 @@ import com.jgoodies.forms.factories.FormFactory;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.lang.*;
 
 public class SundialGenerator {
 
@@ -72,7 +71,7 @@ public class SundialGenerator {
 				FormFactory.RELATED_GAP_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC,}));
 		
-		JLabel lblStatusReady = new JLabel("Status: Ready");
+		final JLabel lblStatusReady = new JLabel("Status: Ready");
 		lblStatusReady.setHorizontalAlignment(SwingConstants.CENTER);
 		panel.add(lblStatusReady, "1, 1, fill, top");
 		
@@ -121,24 +120,26 @@ public class SundialGenerator {
 				{
 					double longitude = Double.parseDouble(txtEnterLongitudeHere.getText());
 					double latitude = Double.parseDouble(txtEnterLatitudeHere.getText());
+					
+					if (Math.abs(longitude) > 180)
+					{
+						lblStatusReady.setText("Status: Invalid longitude!");
+					}
+					else if (Math.abs(latitude) > 90)
+					{
+						lblStatusReady.setText("Status: Invalid latitude!");
+					}
+					else
+					{
+						lblStatusReady.setText("Status: Drawing..");
+					}
 				}
 				catch (NumberFormatException e)
 				{
 					lblStatusReady.setText("Status: Please enter numerical digits as longitude and latitude values!");
 				}
 					
-				if (Math.abs(longitude) > 180)
-				{
-					lblStatusReady.setText("Status: Invalid longitude!");
-				}
-				else if (Math.abs(latitude) > 90)
-				{
-					lblStatusReady.setText("Status: Invalid latitude!");
-				}
-				else
-				{
-					lblStatusReady.setText("Status: Drawing..");
-				}
+				
 			}
 		});
 		frame.getContentPane().add(btnGenerateSundial, BorderLayout.SOUTH);
