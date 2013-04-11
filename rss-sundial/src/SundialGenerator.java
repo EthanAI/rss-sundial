@@ -82,12 +82,12 @@ public class SundialGenerator {
 		JSplitPane splitPane = new JSplitPane();
 		panel.add(splitPane, "1, 5, center, center");
 		
-		JComboBox<String> comboBox = new JComboBox<String>();
+		final JComboBox<String> comboBox = new JComboBox<String>();
 		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"}));
 		comboBox.setMaximumRowCount(5);
 		splitPane.setLeftComponent(comboBox);
 		
-		JComboBox<String> comboBox_1 = new JComboBox<String>();
+		final JComboBox<String> comboBox_1 = new JComboBox<String>();
 		comboBox_1.setModel(new DefaultComboBoxModel<String>(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"}));
 		comboBox_1.setMaximumRowCount(5);
 		splitPane.setRightComponent(comboBox_1);
@@ -116,12 +116,23 @@ public class SundialGenerator {
 		JButton btnGenerateSundial = new JButton("Generate Sundial");
 		btnGenerateSundial.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+								
+				// Initializing month and day variables
+				int month = comboBox.getSelectedIndex() + 1;				
+				int day = comboBox_1.getSelectedIndex() + 1;
+				
 				try
 				{
+					// Initializing longitude and latitude variables from inputs
 					double longitude = Double.parseDouble(txtEnterLongitudeHere.getText());
 					double latitude = Double.parseDouble(txtEnterLatitudeHere.getText());
 					
-					if (Math.abs(longitude) > 180)
+					// Longitude and Latitude input validity checking
+					if (Math.abs(longitude) > 180 && Math.abs(latitude) > 90)
+					{
+						lblStatusReady.setText("Status: Invalid longitude and latitude!");
+					}
+					else if (Math.abs(longitude) > 180)
 					{
 						lblStatusReady.setText("Status: Invalid longitude!");
 					}
@@ -129,16 +140,24 @@ public class SundialGenerator {
 					{
 						lblStatusReady.setText("Status: Invalid latitude!");
 					}
+					// Recieved valid inputs
 					else
 					{
 						lblStatusReady.setText("Status: Drawing..");
+						Thread.sleep(1000);
+						lblStatusReady.setText("Status: Complete!");
 					}
 				}
+				// Catches longitude and latitude inputs that cannot be parsed into numbers
 				catch (NumberFormatException e)
 				{
 					lblStatusReady.setText("Status: Please enter numerical digits as longitude and latitude values!");
 				}
-					
+				// Catches interrupt exception for the Thread.sleep() command
+				catch (InterruptedException e)
+				{
+					// Do nothing for now
+				}	
 				
 			}
 		});
