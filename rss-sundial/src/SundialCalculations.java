@@ -2,7 +2,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.util.Scanner;
 import java.lang.Math;
-
+//Testing author name correction
 //Time zones: http://www.iana.org/time-zones
 public class SundialCalculations {
 	/**
