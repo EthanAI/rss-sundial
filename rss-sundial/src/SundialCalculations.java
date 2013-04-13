@@ -67,9 +67,9 @@ public class SundialCalculations {
 	 */
 	public static double[] getHourLineAngles(double latitude, double longitude, int date) {
 		double[] angleArray = new double[14];
-		double meridianDelta = getMeridianDelta(longitude); //minutes
+		double minutesMeridianDelta = getMeridianDelta(longitude) / 15 * 60; //minutes
 		double EOTDelta = EOTCorrection(date); //minutes
-		double netDelta = (meridianDelta + EOTDelta) / 60; //converted to hours
+		double netDelta = (minutesMeridianDelta + EOTDelta) / 60; //converted to hours
 		//System.out.println(meridianDelta + " " + EOTDelta + " " + netDelta);
 		//Lines are symmetrical before correction factors
 		//After correction factors in winter, west of meridian (most common situation):
@@ -141,7 +141,7 @@ public class SundialCalculations {
 		
 		nearestHour = (int)Math.round((longitude/15) * 1) / 1; //Calculate hours from GMT
 		meridianDelta = longitude - nearestHour * 15; //Removes the hour difference to just leave the minute difference
-		meridianDelta = meridianDelta / 15 * 60; //convert from degrees of space to minutes of time
+		meridianDelta = meridianDelta; 
 		//System.out.println(nearestHour + " " + meridianDelta);
 		return meridianDelta;
 	}
