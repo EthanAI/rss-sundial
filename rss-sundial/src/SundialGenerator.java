@@ -5,6 +5,7 @@ import com.jgoodies.forms.factories.FormFactory;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.*;
 
 public class SundialGenerator {
 
@@ -118,8 +119,37 @@ public class SundialGenerator {
 			public void actionPerformed(ActionEvent arg0) {
 								
 				// Initializing month and day variables
-				int month = comboBox.getSelectedIndex() + 1;				
+				int month = comboBox.getSelectedIndex() + 1;
+				String monthString = "";
 				int day = comboBox_1.getSelectedIndex() + 1;
+				String dayString = "";
+				
+				// Getting the current year
+				Calendar cal = Calendar.getInstance();
+				int year = cal.get(Calendar.YEAR);
+				String yearString = Integer.toString(year);
+				
+				// Assuring month and day are in 2 digit format
+				if (month < 10)
+				{
+					monthString = "0" + Integer.toString(month);
+				}
+				else
+				{
+					monthString = Integer.toString(month);
+				}
+				if (day < 10)
+				{
+					dayString = "0" + Integer.toString(day);
+				}
+				else
+				{
+					dayString = Integer.toString(day);
+				}
+				
+				// Concatenating the date into YYYYMMDD format
+				String dateString = yearString + monthString + dayString;
+				int date = Integer.parseInt(dateString);
 				
 				try
 				{
@@ -144,6 +174,13 @@ public class SundialGenerator {
 					else
 					{
 						lblStatusReady.setText("Status: Drawing..");
+						
+						//
+						//
+						// INSERT CALCULATION AND DRAWING METHOD CALLS HERE
+						//
+						//
+						
 						Thread.sleep(1000);
 						lblStatusReady.setText("Status: Complete!");
 					}
