@@ -41,7 +41,7 @@ public class SundialGenerator {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 548, 350);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JLabel lblSundialGenerator = new JLabel("Sundial Generator");
@@ -58,7 +58,9 @@ public class SundialGenerator {
 				FormFactory.RELATED_GAP_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC,
 				FormFactory.RELATED_GAP_ROWSPEC,
-				RowSpec.decode("default:grow"),
+				RowSpec.decode("max(11dlu;default)"),
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
 				FormFactory.RELATED_GAP_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC,
 				FormFactory.RELATED_GAP_ROWSPEC,
@@ -80,18 +82,19 @@ public class SundialGenerator {
 		lblDate.setFont(new Font("Tahoma", Font.BOLD, 11));
 		panel.add(lblDate, "1, 3, center, default");
 		
-		JSplitPane splitPane = new JSplitPane();
-		panel.add(splitPane, "1, 5, center, center");
+		JPanel panel_1 = new JPanel();
+		panel.add(panel_1, "1, 5, fill, center");
+		panel_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		final JComboBox<String> comboBox = new JComboBox<String>();
 		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"}));
 		comboBox.setMaximumRowCount(5);
-		splitPane.setLeftComponent(comboBox);
+		panel_1.add(comboBox);
 		
 		final JComboBox<String> comboBox_1 = new JComboBox<String>();
 		comboBox_1.setModel(new DefaultComboBoxModel<String>(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"}));
 		comboBox_1.setMaximumRowCount(5);
-		splitPane.setRightComponent(comboBox_1);
+		panel_1.add(comboBox_1);
 		
 		JLabel lblLongitude = new JLabel("Longitude");
 		lblLongitude.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -112,7 +115,7 @@ public class SundialGenerator {
 		txtEnterLatitudeHere.setColumns(10);
 		
 		JLabel lblMesaVerdeReseach = new JLabel("Mesa Verde Research Group");
-		panel.add(lblMesaVerdeReseach, "1, 17, center, default");
+		panel.add(lblMesaVerdeReseach, "1, 19, center, default");
 		
 		JButton btnGenerateSundial = new JButton("Generate Sundial");
 		btnGenerateSundial.addActionListener(new ActionListener() {
