@@ -1,7 +1,8 @@
-import java.io.File;
+/*import java.io.File;
 import java.io.FileReader;
 import java.util.Scanner;
 import java.lang.Math;
+*/
 //Testing author name correction
 //Time zones: http://www.iana.org/time-zones
 public class SundialCalculations {
@@ -49,9 +50,9 @@ public class SundialCalculations {
 		
 		//Check deliverable values
 		for(int i = 0; i <= 12; i++) {
-			System.out.println("Hour: " + lineLabels[i] + " \t" + lineAngles[i]);
+			//System.out.println("Hour: " + lineLabels[i] + " \t" + lineAngles[i]);
 		}
-		System.out.println("Gnomon Angle: \t" + gAngle);
+		//System.out.println("Gnomon Angle: \t" + gAngle);
 	}
 	
 	/*
@@ -141,7 +142,6 @@ public class SundialCalculations {
 		
 		nearestHour = (int)Math.round((longitude/15) * 1) / 1; //Calculate hours from GMT
 		meridianDelta = longitude - nearestHour * 15; //Removes the hour difference to just leave the minute difference
-		meridianDelta = meridianDelta; 
 		//System.out.println(nearestHour + " " + meridianDelta);
 		return meridianDelta;
 	}
@@ -221,11 +221,11 @@ public class SundialCalculations {
 	}
 	
 	public static double getLatitude() {
-		return 21;
+		return 45;
 	}
 	
 	public static int getDate() {
-		return 20130415;
+		return 20131102;
 	}
 	
 	public static boolean isDayLightSavings(double latitude, double longitude, int date) {
@@ -253,20 +253,22 @@ public class SundialCalculations {
 	 */
 	public static boolean isUSASummer(int date) throws Exception {
 		int[] USADSTSequence = {20070101, 20070311, 20071104, 20080309, 20081102, 20090308, 20091101, 20100314, 20101107, 20110313, 20111106, 20120311, 20121104, 20130310, 20131103, 20140309, 20141102, 20150308, 20151101, 20160313, 20161106, 20170312, 20171105, 20180311, 20181104, 20190310, 20191103, 20200308, 20201101, 20210314, 20211107, 20220313, 20221106, 20230312, 20231105, 20240310, 20241103, 20250309, 20251102, 20251231};
-		boolean isSummer = false;
+		boolean isSummer = true;
 		if(date < 20070101 || date > 20251231) //error if date value is outside our table
 			throw new Exception("DST module only works from 2007 to 2025.");
 		//Iterate through DST sequence, toggling isSummer each value. When the wheel stops, isSummer will be correct.
-		for (int i = 0; i < USADSTSequence.length && date > USADSTSequence[i]; i++, isSummer = !isSummer) {
-			//System.out.println(isSummer + " " + date + " " + USADSTSequence[i]);
+		for (int i = 0; i < USADSTSequence.length && date >= USADSTSequence[i]; i++) {
+			isSummer = !isSummer;
+			//System.out.println(i % 2 + " " + isSummer + " " + date + " " + USADSTSequence[i]);
 		}
-		isSummer = !isSummer; //final toggle
+		//System.out.println(isSummer);
 		return isSummer;
 	}
 	
 	/*
 	 * Exclusions from DST:
 	 *   Hawaii
+	 *   Does not handle crossing of international date line. Zones crossing must be split into two zones bordered by +/- 180 longitude
 	 */
 	public static boolean hasDSTLocation(double latitude, double longitude) {
 		boolean isDSTLocation = true; //assume only exceptions don't do DST. (True in US and Europe and neither prof. or TA are from Asia)
@@ -276,7 +278,7 @@ public class SundialCalculations {
 		double hawaiiWLong = -170;
 
 		//check if in hawaii
-		if(withinGlobeQuandrant(latitude, longitude, hawaiiNLat, hawaiiSLat, hawaiiWLong, hawaiiELong))
+		if(withinGlobeQuandrant(latitude, longitude, hawaiiNLat, hawaiiSLat, hawaiiELong, hawaiiWLong))
 			isDSTLocation = false;
 		
 		if(!isDSTLocation)
@@ -284,7 +286,10 @@ public class SundialCalculations {
 		return isDSTLocation;
 	}
 	
-	public static boolean withinGlobeQuandrant(double latitude, double longitude, double nLat, double sLat, double wLong, double eLong) {
+	/*
+	 * Does not handle crossing of international date line. Zones crossing must be split into two zones bordered by +/- 180 longitude
+	 */
+	public static boolean withinGlobeQuandrant(double latitude, double longitude, double nLat, double sLat, double eLong, double wLong) {
 		return (latitude <= nLat && latitude >= sLat && longitude <= eLong && longitude >= wLong);
 	}
 }

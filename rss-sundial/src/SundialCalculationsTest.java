@@ -7,6 +7,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 
+
 public class SundialCalculationsTest {
 
 	@BeforeClass
@@ -27,7 +28,12 @@ public class SundialCalculationsTest {
 
 	@Test
 	public void testGetHourLineAngles() {
-		fail("Not yet implemented");
+		double longitude = 150;
+		double latitude = 30;
+		int date = 20130402;
+		//double[] 
+		//double[] testAngles = SundialCalculations.getHourLineAngles(latitude, longitude, date);
+		fail("Need experimental data to test against.");
 	}
 
 	@Test
@@ -109,12 +115,26 @@ public class SundialCalculationsTest {
 
 	@Test
 	public void testIsDayLightSavings() {
-		fail("Not yet implemented");
+		assertFalse(SundialCalculations.isDayLightSavings(0, 0, 20130309));
+		assertTrue(SundialCalculations.isDayLightSavings(0, 0, 20130310));
+		assertTrue(SundialCalculations.isDayLightSavings(0, 0, 20131102));
+		assertFalse(SundialCalculations.isDayLightSavings(0, 0, 20131103));
 	}
 
 	@Test
 	public void testIsUSASummer() {
-		//assertTrue(SundialCalculations.isUSASummer(20130413));
+		try {
+			assertTrue(SundialCalculations.isUSASummer(20130413));
+			assertFalse(SundialCalculations.isUSASummer(20130309));
+			assertTrue(SundialCalculations.isUSASummer(20130310));
+			assertTrue(SundialCalculations.isUSASummer(20131102));
+			assertFalse(SundialCalculations.isUSASummer(20131103));
+			SundialCalculations.isUSASummer(0);
+			fail("Code should not execute as previous line should have triggered an exception.");
+		}
+		catch(Exception e) {
+			assertNotNull(e.getMessage());
+		}
 	}
 
 	@Test
@@ -127,7 +147,15 @@ public class SundialCalculationsTest {
 
 	@Test
 	public void testWithinGlobeQuandrant() {
-		fail("Not yet implemented");
+		assertTrue(SundialCalculations.withinGlobeQuandrant(0, 0, 30, -30, 15, -15));
+		assertTrue(SundialCalculations.withinGlobeQuandrant(30, 0, 30, -30, 15, -15));
+		assertFalse(SundialCalculations.withinGlobeQuandrant(31, 0, 30, -30, 15, -15));
+		assertTrue(SundialCalculations.withinGlobeQuandrant(-30, 0, 30, -30, 15, -15));
+		assertFalse(SundialCalculations.withinGlobeQuandrant(-31, 0, 30, -30, 15, -15));
+		assertTrue(SundialCalculations.withinGlobeQuandrant(0, 15, 30, -30, 15, -15));
+		assertFalse(SundialCalculations.withinGlobeQuandrant(0, 16, 30, -30, 15, -15));
+		assertTrue(SundialCalculations.withinGlobeQuandrant(0, -15, 30, -30, 15, -15));
+		assertFalse(SundialCalculations.withinGlobeQuandrant(0, -16, 30, -30, 15, -15));
 	}
 
 }
