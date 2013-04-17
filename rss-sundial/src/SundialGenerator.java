@@ -155,23 +155,57 @@ public class SundialGenerator {
 		});
 		panel.add(chckbxUseTodaysDate, "1, 5, center, default");
 		
+		JLabel lblFindCoordinateData = new JLabel("Find coordinate data here");
+		lblFindCoordinateData.setForeground(Color.BLUE);
+		panel.add(lblFindCoordinateData, "1, 9, center, default");
+		lblFindCoordinateData.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+				try
+				{
+					URI url = new URI("http://www.worldatlas.com/aatlas/findlatlong.htm");
+					
+					if (Desktop.isDesktopSupported())
+		            {
+		                try
+		                {
+		                    Desktop.getDesktop().browse(url);
+		                }
+		                catch (Exception e)
+		                {
+		                    // CANNOT BROWSE, DO NOTHING FOR NOW
+		                }
+		            }
+		            else
+		            {
+		                // DESKTOP IS NOT SUPPORTED, DO NOTHING FOR NOW
+		            }
+				}
+				catch (URISyntaxException e)
+				{
+					// URISyntaxException, do nothing for now
+				}	
+			}
+		});
+		
 		JLabel lblLatitude = new JLabel("Latitude");
 		lblLatitude.setFont(new Font("Tahoma", Font.BOLD, 11));
-		panel.add(lblLatitude, "1, 9, center, default");
+		panel.add(lblLatitude, "1, 11, center, default");
 		
 		txtEnterLatitudeHere = new JTextField();
 		txtEnterLatitudeHere.setText("Enter Latitude Here");
-		panel.add(txtEnterLatitudeHere, "1, 11, center, center");
-		txtEnterLatitudeHere.setColumns(40);
+		panel.add(txtEnterLatitudeHere, "1, 13, center, center");
+		txtEnterLatitudeHere.setColumns(20);
 		
 		JLabel lblLongitude = new JLabel("Longitude");
 		lblLongitude.setFont(new Font("Tahoma", Font.BOLD, 11));
-		panel.add(lblLongitude, "1, 13, center, default");
+		panel.add(lblLongitude, "1, 15, center, default");
 		
 		txtEnterLongitudeHere = new JTextField();
 		txtEnterLongitudeHere.setText("Enter Longitude Here");
-		panel.add(txtEnterLongitudeHere, "1, 15, center, default");
-		txtEnterLongitudeHere.setColumns(40);
+		panel.add(txtEnterLongitudeHere, "1, 17, center, default");
+		txtEnterLongitudeHere.setColumns(20);
 		
 		JLabel lblMesaVerdeReseach = new JLabel("Mesa Verde Research Group");
 		lblMesaVerdeReseach.setForeground(Color.BLUE);
