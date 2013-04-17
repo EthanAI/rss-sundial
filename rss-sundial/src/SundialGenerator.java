@@ -7,6 +7,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 import java.net.*;
+import javax.swing.border.LineBorder;
 
 public class SundialGenerator {
 
@@ -52,6 +53,7 @@ public class SundialGenerator {
 		frame.getContentPane().add(lblSundialGenerator, BorderLayout.NORTH);
 		
 		JPanel panel = new JPanel();
+		panel.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(new FormLayout(new ColumnSpec[] {
 				ColumnSpec.decode("434px:grow"),},
@@ -79,7 +81,7 @@ public class SundialGenerator {
 				FormFactory.DEFAULT_ROWSPEC,}));
 		
 		final JLabel lblStatusReady = new JLabel("Status: Ready");
-		lblStatusReady.setBackground(Color.WHITE);
+		lblStatusReady.setBackground(UIManager.getColor("Label.background"));
 		lblStatusReady.setForeground(Color.RED);
 		lblStatusReady.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblStatusReady.setHorizontalAlignment(SwingConstants.CENTER);
@@ -93,14 +95,45 @@ public class SundialGenerator {
 		panel.add(panel_1, "1, 7, fill, center");
 		panel_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		final JComboBox<String> comboBox = new JComboBox<String>();
-		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"}));
-		comboBox.setMaximumRowCount(5);
-		panel_1.add(comboBox);
-		
 		final JComboBox<String> comboBox_1 = new JComboBox<String>();
 		comboBox_1.setModel(new DefaultComboBoxModel<String>(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"}));
 		comboBox_1.setMaximumRowCount(5);
+		
+		final JComboBox<String> comboBox = new JComboBox<String>();
+		comboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				Calendar cal = Calendar.getInstance();
+				
+				// CHANGE DATE COMBOBOX
+				switch (comboBox.getSelectedIndex())
+				{
+					case 1: 
+						if ((cal.get(Calendar.YEAR))%4 == 0)
+						{
+							comboBox_1.setModel(new DefaultComboBoxModel<String>(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29"}));
+						}
+						else
+						{
+							comboBox_1.setModel(new DefaultComboBoxModel<String>(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28"}));
+						}
+						break;
+					case 3: comboBox_1.setModel(new DefaultComboBoxModel<String>(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"}));
+						break;
+					case 5: comboBox_1.setModel(new DefaultComboBoxModel<String>(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"}));
+						break;
+					case 8: comboBox_1.setModel(new DefaultComboBoxModel<String>(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"}));
+						break;
+					case 10: comboBox_1.setModel(new DefaultComboBoxModel<String>(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"}));
+						break;
+					default: comboBox_1.setModel(new DefaultComboBoxModel<String>(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"}));
+						break;
+				}
+			}
+		});
+		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"}));
+		comboBox.setMaximumRowCount(5);
+		panel_1.add(comboBox);
 		panel_1.add(comboBox_1);
 		
 		final JCheckBox chckbxUseTodaysDate = new JCheckBox("Use Today's Date");
@@ -189,8 +222,8 @@ public class SundialGenerator {
 				
 				if (chckbxUseTodaysDate.isSelected())
 				{
-					day = cal.get(Calendar.DATE);
 					month = cal.get(Calendar.MONTH);
+					day = cal.get(Calendar.DATE);
 				}
 				else
 				{
@@ -259,7 +292,7 @@ public class SundialGenerator {
 				// Catches longitude and latitude inputs that cannot be parsed into numbers
 				catch (NumberFormatException e)
 				{
-					lblStatusReady.setText("Status: Please enter longitude and latitude as numerical values!");
+					lblStatusReady.setText("Status: Please enter latitude and longitude as numerical values!");
 				}
 				// Catches interrupt exception for the Thread.sleep() command
 				catch (InterruptedException e)
