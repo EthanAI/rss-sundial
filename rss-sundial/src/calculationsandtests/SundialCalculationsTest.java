@@ -1,3 +1,5 @@
+package calculationsandtests;
+
 import static org.junit.Assert.*;
 
 import org.junit.After;
@@ -34,6 +36,17 @@ public class SundialCalculationsTest {
 		//double[] 
 		//double[] testAngles = SundialCalculations.getHourLineAngles(latitude, longitude, date);
 		fail("Need experimental data to test against.");
+	}
+	
+	@Test
+	public void testGetLineLabels() {
+		fail("Not implemented yet.");
+	}	
+	
+	@Test
+	public void testGetGnomonAngle() {
+		double testGnomon = Math.abs(-33.33);
+		assertEquals(testGnomon, SundialCalculations.getGnomonAngle(-33.33), .01);
 	}
 
 	@Test
