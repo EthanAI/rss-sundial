@@ -44,7 +44,7 @@ public class SundialGenerator {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setResizable(false);
-		frame.setBounds(100, 100, 546, 362);
+		frame.setBounds(100, 100, 577, 390);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JLabel lblSundialGenerator = new JLabel("Sundial Generator");
@@ -70,13 +70,11 @@ public class SundialGenerator {
 				FormFactory.RELATED_GAP_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC,
 				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
+				RowSpec.decode("max(17dlu;default)"),
 				FormFactory.RELATED_GAP_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC,
 				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
+				RowSpec.decode("max(18dlu;default)"),
 				FormFactory.RELATED_GAP_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC,}));
 		
@@ -193,19 +191,22 @@ public class SundialGenerator {
 		lblLatitude.setFont(new Font("Tahoma", Font.BOLD, 11));
 		panel.add(lblLatitude, "1, 11, center, default");
 		
+		JPanel panel_2 = new JPanel();
+		panel.add(panel_2, "1, 13, center, center");
+		panel_2.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
 		txtEnterLatitudeHere = new JTextField();
+		panel_2.add(txtEnterLatitudeHere);
 		txtEnterLatitudeHere.setText("Enter Latitude Here");
-		panel.add(txtEnterLatitudeHere, "1, 13, center, center");
 		txtEnterLatitudeHere.setColumns(20);
+		
+		JComboBox comboBox_2 = new JComboBox();
+		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"N", "S"}));
+		panel_2.add(comboBox_2);
 		
 		JLabel lblLongitude = new JLabel("Longitude");
 		lblLongitude.setFont(new Font("Tahoma", Font.BOLD, 11));
 		panel.add(lblLongitude, "1, 15, center, default");
-		
-		txtEnterLongitudeHere = new JTextField();
-		txtEnterLongitudeHere.setText("Enter Longitude Here");
-		panel.add(txtEnterLongitudeHere, "1, 17, center, default");
-		txtEnterLongitudeHere.setColumns(20);
 		
 		JLabel lblMesaVerdeReseach = new JLabel("Mesa Verde Research Group");
 		lblMesaVerdeReseach.setForeground(Color.BLUE);
@@ -239,7 +240,19 @@ public class SundialGenerator {
 				}	
 			}
 		});
-		panel.add(lblMesaVerdeReseach, "1, 21, center, default");
+		
+		JPanel panel_3 = new JPanel();
+		panel.add(panel_3, "1, 17, fill, center");
+		
+		txtEnterLongitudeHere = new JTextField();
+		panel_3.add(txtEnterLongitudeHere);
+		txtEnterLongitudeHere.setText("Enter Longitude Here");
+		txtEnterLongitudeHere.setColumns(20);
+		
+		JComboBox comboBox_3 = new JComboBox();
+		comboBox_3.setModel(new DefaultComboBoxModel(new String[] {"E", "W"}));
+		panel_3.add(comboBox_3);
+		panel.add(lblMesaVerdeReseach, "1, 19, center, default");
 		
 		JButton btnGenerateSundial = new JButton("Generate Sundial");
 		btnGenerateSundial.addActionListener(new ActionListener() {
