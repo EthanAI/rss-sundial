@@ -40,7 +40,10 @@ public class SundialCalculationsTest {
 	
 	@Test
 	public void testGetLineLabels() {
-		fail("Not implemented yet.");
+		int[] standardLabels = {6, 7, 8, 9, 10, 11, 12, 1, 2, 3, 4, 5, 6};
+		int[] DSTLabels = {7, 8, 9, 10, 11, 12, 1, 2, 3, 4, 5, 6, 7};
+		assertArrayEquals(standardLabels, SundialCalculations.getLineLabels(30, 45, 20130101));
+		assertArrayEquals(DSTLabels, SundialCalculations.getLineLabels(30, 45, 20130601));
 	}	
 	
 	@Test
