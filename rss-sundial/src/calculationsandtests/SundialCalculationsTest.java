@@ -35,6 +35,13 @@ public class SundialCalculationsTest {
 		int date = 20130402;
 		//double[] 
 		//double[] testAngles = SundialCalculations.getHourLineAngles(latitude, longitude, date);
+		
+		//test southern hemisphere
+		
+		//test poles
+		
+		//test equator
+		
 		fail("Need experimental data to test against.");
 	}
 	
@@ -50,6 +57,17 @@ public class SundialCalculationsTest {
 	public void testGetGnomonAngle() {
 		double testGnomon = Math.abs(-33.33);
 		assertEquals(testGnomon, SundialCalculations.getGnomonAngle(-33.33), .01);
+	}
+	
+	@Test
+	public void testIsNorthernHemisphere() {
+		assertTrue(SundialCalculations.isNorthernHemisphere(90));
+		assertTrue(SundialCalculations.isNorthernHemisphere(45));
+		assertTrue(SundialCalculations.isNorthernHemisphere(0));
+		
+		assertFalse(SundialCalculations.isNorthernHemisphere(-90));
+		assertFalse(SundialCalculations.isNorthernHemisphere(-45));
+		assertFalse(SundialCalculations.isNorthernHemisphere(-0.00001));
 	}
 
 	@Test

@@ -388,7 +388,7 @@ public class SundialGenerator {
 						
 						//debug code to test the values
 						/*
-						System.out.println(date);
+						System.out.println(latitude + " " + longitude + " " + date);
 						System.out.println(gnomonAngle);
 						for(int i = 0; i < hourLineAngles.length; i++) {
 							System.out.println(hourLineAngles[i] + " " + lineLabels[i]);
@@ -400,6 +400,13 @@ public class SundialGenerator {
 						// INSERT DRAWING METHOD CALLS HERE                  //
 						//                                                   //
 						///////////////////////////////////////////////////////
+						if(SundialCalculations.isNorthernHemisphere(latitude)) {
+							
+						}
+						//southern hemisphere drawing will be different. 
+						else {
+							
+						}
 						
 						Thread.sleep(1000);
 						lblStatusReady.setText("Status: Complete!");

@@ -65,13 +65,21 @@ public class SundialCalculations {
 		for(int i = 0; i <= 12; i++, hoursFromNoon++) {
 			//System.out.println(hoursFromNoon);
 			angleArray[i] = atanDegrees(tanDegrees(hoursFromNoon * 15)* sinDegrees(latitude));
-			//correction when angle should be obtuse (atan cannot spit out angle larger than 90)
-			if(hoursFromNoon < -6) {
-				angleArray[i] = -1 * (180 - angleArray[i]);
-			}
-			if(hoursFromNoon > 6) {
-				angleArray[i] = 180 + angleArray[i];
-			}
+		}
+		//correction when angle should be obtuse (atan cannot spit out angle larger than 90)
+		//Check and correct first entry
+		if(angleArray[0] / angleArray[1] < 0) { //if signs dont match then we've gone past 90 degrees
+			if(angleArray[1] < 0)
+				angleArray[0] = -1 * (180 - angleArray[0]); //negative correction
+			else
+				angleArray[0] = 180 + angleArray[0]; //positive correction
+		}
+		//Check and correct last entry
+		if(angleArray[12] / angleArray[11] < 0) { //if signs dont match then we've gone past 90 degrees
+			if(angleArray[11] < 0)
+				angleArray[12] = -1 * (180 - angleArray[12]); //negative correction
+			else
+				angleArray[12] = 180 + angleArray[12]; //positive correction
 		}
 		return angleArray;
 	}
@@ -110,6 +118,13 @@ public class SundialCalculations {
 	 */
 	public static double getGnomonAngle(double latitude) {
 		return Math.abs(latitude);
+	}
+	
+	/* isNorthernHemisphere(double latitude) 
+	 * @returns true if latitude >= 0, otherwise false
+	 */
+	public static boolean isNorthernHemisphere(double latitude) {
+		return (latitude >= 0);
 	}
 	
 	/*
@@ -306,9 +321,6 @@ public class SundialCalculations {
 		catch (Exception e) {
 			System.out.println(e);
 		}
-		
-		if(DSTBoolean)
-			System.out.println("Daylight savings is in effect.");
 		return DSTBoolean;
 	}
 	
@@ -358,8 +370,8 @@ public class SundialCalculations {
 		if(withinGlobeQuandrant(latitude, longitude, hawaiiNLat, hawaiiSLat, hawaiiELong, hawaiiWLong))
 			isDSTLocation = false;
 		
-		if(!isDSTLocation)
-			System.out.println("Your location does not observe daylight savings...ever.");
+		//if(!isDSTLocation)
+		//	System.out.println("Your location does not observe daylight savings...ever.");
 		return isDSTLocation;
 	}
 	
