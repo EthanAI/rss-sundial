@@ -200,8 +200,8 @@ public class SundialGenerator {
 		txtEnterLatitudeHere.setText("Enter Latitude Here");
 		txtEnterLatitudeHere.setColumns(20);
 		
-		JComboBox comboBox_2 = new JComboBox();
-		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"N", "S"}));
+		final JComboBox<String> comboBox_2 = new JComboBox<String>();
+		comboBox_2.setModel(new DefaultComboBoxModel<String>(new String[] {"N", "S"}));
 		panel_2.add(comboBox_2);
 		
 		JLabel lblLongitude = new JLabel("Longitude");
@@ -249,8 +249,8 @@ public class SundialGenerator {
 		txtEnterLongitudeHere.setText("Enter Longitude Here");
 		txtEnterLongitudeHere.setColumns(20);
 		
-		JComboBox comboBox_3 = new JComboBox();
-		comboBox_3.setModel(new DefaultComboBoxModel(new String[] {"E", "W"}));
+		final JComboBox<String> comboBox_3 = new JComboBox<String>();
+		comboBox_3.setModel(new DefaultComboBoxModel<String>(new String[] {"E", "W"}));
 		panel_3.add(comboBox_3);
 		panel.add(lblMesaVerdeReseach, "1, 19, center, default");
 		
@@ -258,6 +258,9 @@ public class SundialGenerator {
 		btnGenerateSundial.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
+				//
+				// BEGIN DATE CALCULATIONS
+				//
 				Calendar cal = Calendar.getInstance();
 				int year = 0;
 				String yearString = Integer.toString(year);
@@ -301,7 +304,13 @@ public class SundialGenerator {
 				// Concatenating the date into YYYYMMDD format
 				String dateString = yearString + monthString + dayString;
 				int date = Integer.parseInt(dateString);
+				//
+				// END DATE CALCULATIONS
+				//
 				
+				//
+				// BEGIN INPUT PROCESSING
+				//
 				try
 				{
 					// Initializing longitude and latitude variables from inputs
@@ -309,21 +318,43 @@ public class SundialGenerator {
 					double longitude = Double.parseDouble(txtEnterLongitudeHere.getText());
 					
 					// Longitude and Latitude input validity checking
-					if (Math.abs(longitude) > 180 && Math.abs(latitude) > 90)
+					if (latitude < 0 && longitude < 0)
+					{
+						lblStatusReady.setText("Status: Negative coordinates should be indicated with S and W!");
+					}
+					else if (latitude > 90 && longitude > 180)
 					{
 						lblStatusReady.setText("Status: Invalid latitude and longitude!");
 					}
-					else if (Math.abs(latitude) > 90)
+					else if (latitude > 90)
 					{
 						lblStatusReady.setText("Status: Invalid latitude!");
 					}
-					else if (Math.abs(longitude) > 180)
+					else if (latitude < 0)
+					{
+						lblStatusReady.setText("Status: Negative latitude should be indicated with S!");
+					}
+					else if (longitude > 180)
 					{
 						lblStatusReady.setText("Status: Invalid longitude!");
+					}
+					else if (longitude < 0)
+					{
+						lblStatusReady.setText("Status: Negative longitude should be indicated with W!");
 					}
 					// Recieved valid inputs
 					else
 					{
+						// APPLYING DIRECTIONAL MODIFIERS TO COORDINATES
+						if (comboBox_2.getSelectedIndex() == 1)
+						{
+							latitude = latitude * -1;
+						}
+						if (comboBox_3.getSelectedIndex() == 1)
+						{
+							longitude = longitude * -1;
+						}
+						
 						lblStatusReady.setText("Status: Drawing..");
 						
 						//
@@ -345,7 +376,10 @@ public class SundialGenerator {
 				catch (InterruptedException e)
 				{
 					// Do nothing for now
-				}	
+				}
+				//
+				// END INPUT PROCESSING
+				//
 				
 			}
 		});
