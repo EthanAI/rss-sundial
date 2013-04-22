@@ -1,3 +1,5 @@
+import calculationsandtests.SundialCalculations;
+
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
@@ -283,8 +285,8 @@ public class SundialGenerator {
 				//
 				Calendar cal = Calendar.getInstance();
 				int year = 0;
-				String yearString = Integer.toString(year);
 				year = cal.get(Calendar.YEAR);
+				String yearString = Integer.toString(year); //future or past years not currently supported
 				int month = 0;
 				String monthString = "";
 				int day = 0;
@@ -378,10 +380,24 @@ public class SundialGenerator {
 						}
 						
 						lblStatusReady.setText("Status: Drawing..");
+					
+						//Calculate values needed for drawing
+						double[] hourLineAngles = SundialCalculations.getHourLineAngles(latitude, longitude, date);
+						int[] lineLabels = SundialCalculations.getLineLabels(latitude, longitude, date);
+						double gnomonAngle = SundialCalculations.getGnomonAngle(latitude);
+						
+						//debug code to test the values
+						/*
+						System.out.println(date);
+						System.out.println(gnomonAngle);
+						for(int i = 0; i < hourLineAngles.length; i++) {
+							System.out.println(hourLineAngles[i] + " " + lineLabels[i]);
+						}
+						*/
 						
 						///////////////////////////////////////////////////////
 						//                                                   //
-						// INSERT CALCULATION AND DRAWING METHOD CALLS HERE  //
+						// INSERT DRAWING METHOD CALLS HERE                  //
 						//                                                   //
 						///////////////////////////////////////////////////////
 						
