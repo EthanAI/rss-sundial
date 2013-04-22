@@ -16,36 +16,14 @@ public class SundialCalculations {
 	 * in final code. 
 	 */
 	public static void main(String[] args) {
-		double latitude = 0;
-		double longitude = 0;
-		int date = 0; //today is 20130411
-		boolean dayLightSavings = false;
-		
-		//outputs for the drawing module
-		double[] lineAngles = new double[14];
-		double gAngle = 0;
-		
-		//get lat, long and date from user
-		latitude = getLatitude();
-		longitude = getLongitude();
-		date = getDate();
-		
-		//check for daylight savings
-		dayLightSavings = isDayLightSavings(latitude, longitude, date);
-
-		//Find nearest Meridian from table (if this is required)
-
-		
-		
-		//calculate lines and angles
-		gAngle = Math.abs(latitude); //Gnomon can't be negative;
-		lineAngles  = getHourLineAngles(latitude, longitude, date);
-			
-		//Check deliverable values
-		for(int i = 0; i <= 12; i++) {
-			//System.out.println("Hour: " + lineLabels[i] + " \t" + lineAngles[i]);
-		}
-		//System.out.println("Gnomon Angle: \t" + gAngle);
+		//generate values to test
+		//my house
+		//Standard time zone: UTC/GMT -10 hours 
+		//21.351341,-157.900658
+		//fudge it for HST time zone: 21.351341,-157.49 to get experimental data
+		double[] testAngles = getHourLineAngles(21.351341,-157.49, 20130420);
+		for(int i = 0; i < testAngles.length; i++)
+			System.out.println(testAngles[i]);
 	}
 	
 	/*
@@ -72,7 +50,7 @@ public class SundialCalculations {
 	 * 
 	 */
 	public static double[] getHourLineAngles(double latitude, double longitude, int date) {
-		double[] angleArray = new double[14];
+		double[] angleArray = new double[13];
 		double minutesMeridianDelta = getMeridianDelta(longitude) / 15 * 60; //minutes
 		double EOTDelta = EOTCorrection(date); //minutes
 		double netDelta = (minutesMeridianDelta + EOTDelta) / 60; //converted to hours
@@ -110,7 +88,7 @@ public class SundialCalculations {
 	 *          getHourLineAngles() method
 	 */
 	public static int[] getLineLabels(double latitude, double longitude, int date) {
-		int[] lineLabels = new int[14];
+		int[] lineLabels = new int[13];
 		for(int i = 0; i <= 12; i++) { 
 			lineLabels[i] = i + 6;  //go from 6 am to 6 pm
 			if(isDayLightSavings(longitude, latitude, date))
