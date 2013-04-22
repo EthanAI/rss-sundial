@@ -44,14 +44,16 @@ public class SundialGenerator {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setResizable(false);
-		frame.setBounds(100, 100, 546, 362);
+		frame.setBounds(100, 100, 577, 390);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+		// Sundial Generator title label
 		JLabel lblSundialGenerator = new JLabel("Sundial Generator");
 		lblSundialGenerator.setFont(new Font("Tahoma", Font.BOLD, 27));
 		lblSundialGenerator.setHorizontalAlignment(SwingConstants.CENTER);
 		frame.getContentPane().add(lblSundialGenerator, BorderLayout.NORTH);
 		
+		// Main data input panel
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
@@ -70,16 +72,15 @@ public class SundialGenerator {
 				FormFactory.RELATED_GAP_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC,
 				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
+				RowSpec.decode("max(17dlu;default)"),
 				FormFactory.RELATED_GAP_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC,
 				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
+				RowSpec.decode("max(18dlu;default)"),
 				FormFactory.RELATED_GAP_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC,}));
 		
+		// Status label
 		final JLabel lblStatusReady = new JLabel("Status: Ready");
 		lblStatusReady.setBackground(UIManager.getColor("Label.background"));
 		lblStatusReady.setForeground(Color.RED);
@@ -87,25 +88,29 @@ public class SundialGenerator {
 		lblStatusReady.setHorizontalAlignment(SwingConstants.CENTER);
 		panel.add(lblStatusReady, "1, 1, fill, center");
 		
+		// Date label
 		JLabel lblDate = new JLabel("Date");
 		lblDate.setFont(new Font("Tahoma", Font.BOLD, 11));
 		panel.add(lblDate, "1, 3, center, default");
 		
+		// Date input panel
 		JPanel panel_1 = new JPanel();
 		panel.add(panel_1, "1, 7, fill, center");
 		panel_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
+		// Default date combobox
 		final JComboBox<String> comboBox_1 = new JComboBox<String>();
 		comboBox_1.setModel(new DefaultComboBoxModel<String>(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"}));
 		comboBox_1.setMaximumRowCount(5);
 		
+		// Month combobox
 		final JComboBox<String> comboBox = new JComboBox<String>();
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				Calendar cal = Calendar.getInstance();
 				
-				// CHANGE DATE COMBOBOX
+				// CHANGE DATE COMBOBOX ACCORDING TO THE CHOSEN MONTH
 				switch (comboBox.getSelectedIndex())
 				{
 					case 1: 
@@ -136,6 +141,7 @@ public class SundialGenerator {
 		panel_1.add(comboBox);
 		panel_1.add(comboBox_1);
 		
+		// Option to use today's date
 		final JCheckBox chckbxUseTodaysDate = new JCheckBox("Use Today's Date");
 		chckbxUseTodaysDate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -155,6 +161,7 @@ public class SundialGenerator {
 		});
 		panel.add(chckbxUseTodaysDate, "1, 5, center, default");
 		
+		// Link to find coordinate data
 		JLabel lblFindCoordinateData = new JLabel("Find coordinate data here");
 		lblFindCoordinateData.setForeground(Color.BLUE);
 		panel.add(lblFindCoordinateData, "1, 9, center, default");
@@ -189,24 +196,49 @@ public class SundialGenerator {
 			}
 		});
 		
+		// Latitude label
 		JLabel lblLatitude = new JLabel("Latitude");
 		lblLatitude.setFont(new Font("Tahoma", Font.BOLD, 11));
 		panel.add(lblLatitude, "1, 11, center, default");
 		
+		// Panel for latitude inputs
+		JPanel panel_2 = new JPanel();
+		panel.add(panel_2, "1, 13, center, center");
+		panel_2.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		// Latitude input textfield
 		txtEnterLatitudeHere = new JTextField();
+		panel_2.add(txtEnterLatitudeHere);
 		txtEnterLatitudeHere.setText("Enter Latitude Here");
-		panel.add(txtEnterLatitudeHere, "1, 13, center, center");
 		txtEnterLatitudeHere.setColumns(20);
 		
+		// Latitude directional combobox
+		final JComboBox<String> comboBox_2 = new JComboBox<String>();
+		comboBox_2.setModel(new DefaultComboBoxModel<String>(new String[] {"N", "S"}));
+		panel_2.add(comboBox_2);
+		
+		// Longitude label
 		JLabel lblLongitude = new JLabel("Longitude");
 		lblLongitude.setFont(new Font("Tahoma", Font.BOLD, 11));
 		panel.add(lblLongitude, "1, 15, center, default");
 		
+		// Panel for longitude inputs
+		JPanel panel_3 = new JPanel();
+		panel.add(panel_3, "1, 17, center, center");
+		panel_3.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		// Longitude input textfield
 		txtEnterLongitudeHere = new JTextField();
+		panel_3.add(txtEnterLongitudeHere);
 		txtEnterLongitudeHere.setText("Enter Longitude Here");
-		panel.add(txtEnterLongitudeHere, "1, 17, center, default");
 		txtEnterLongitudeHere.setColumns(20);
 		
+		// Longitude directional combobox
+		final JComboBox<String> comboBox_3 = new JComboBox<String>();
+		comboBox_3.setModel(new DefaultComboBoxModel<String>(new String[] {"E", "W"}));
+		panel_3.add(comboBox_3);
+		
+		// Mesa Verde link
 		JLabel lblMesaVerdeReseach = new JLabel("Mesa Verde Research Group");
 		lblMesaVerdeReseach.setForeground(Color.BLUE);
 		lblMesaVerdeReseach.addMouseListener(new MouseAdapter() {
@@ -239,12 +271,16 @@ public class SundialGenerator {
 				}	
 			}
 		});
-		panel.add(lblMesaVerdeReseach, "1, 21, center, default");
+		panel.add(lblMesaVerdeReseach, "1, 19, center, default");
 		
+		// Generate Sundial button
 		JButton btnGenerateSundial = new JButton("Generate Sundial");
 		btnGenerateSundial.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
+				//
+				// BEGIN DATE CALCULATIONS
+				//
 				Calendar cal = Calendar.getInstance();
 				int year = 0;
 				String yearString = Integer.toString(year);
@@ -254,11 +290,13 @@ public class SundialGenerator {
 				int day = 0;
 				String dayString = "";
 				
+				// User selected to use today's date
 				if (chckbxUseTodaysDate.isSelected())
 				{
 					month = cal.get(Calendar.MONTH);
 					day = cal.get(Calendar.DATE);
 				}
+				// User chose their own dates
 				else
 				{
 					// Initializing month and day variables
@@ -288,7 +326,13 @@ public class SundialGenerator {
 				// Concatenating the date into YYYYMMDD format
 				String dateString = yearString + monthString + dayString;
 				int date = Integer.parseInt(dateString);
+				//
+				// END DATE CALCULATIONS
+				//
 				
+				//
+				// BEGIN INPUT PROCESSING
+				//
 				try
 				{
 					// Initializing longitude and latitude variables from inputs
@@ -296,28 +340,50 @@ public class SundialGenerator {
 					double longitude = Double.parseDouble(txtEnterLongitudeHere.getText());
 					
 					// Longitude and Latitude input validity checking
-					if (Math.abs(longitude) > 180 && Math.abs(latitude) > 90)
+					if (latitude < 0 && longitude < 0)
+					{
+						lblStatusReady.setText("Status: Negative coordinates should be indicated with S and W!");
+					}
+					else if (latitude > 90 && longitude > 180)
 					{
 						lblStatusReady.setText("Status: Invalid latitude and longitude!");
 					}
-					else if (Math.abs(latitude) > 90)
+					else if (latitude > 90)
 					{
 						lblStatusReady.setText("Status: Invalid latitude!");
 					}
-					else if (Math.abs(longitude) > 180)
+					else if (latitude < 0)
+					{
+						lblStatusReady.setText("Status: Negative latitude should be indicated with S!");
+					}
+					else if (longitude > 180)
 					{
 						lblStatusReady.setText("Status: Invalid longitude!");
+					}
+					else if (longitude < 0)
+					{
+						lblStatusReady.setText("Status: Negative longitude should be indicated with W!");
 					}
 					// Recieved valid inputs
 					else
 					{
+						// APPLYING DIRECTIONAL MODIFIERS TO COORDINATES
+						if (comboBox_2.getSelectedIndex() == 1)
+						{
+							latitude = latitude * -1;
+						}
+						if (comboBox_3.getSelectedIndex() == 1)
+						{
+							longitude = longitude * -1;
+						}
+						
 						lblStatusReady.setText("Status: Drawing..");
 						
-						//
-						//
-						// INSERT CALCULATION AND DRAWING METHOD CALLS HERE
-						//
-						//
+						///////////////////////////////////////////////////////
+						//                                                   //
+						// INSERT CALCULATION AND DRAWING METHOD CALLS HERE  //
+						//                                                   //
+						///////////////////////////////////////////////////////
 						
 						Thread.sleep(1000);
 						lblStatusReady.setText("Status: Complete!");
@@ -332,7 +398,10 @@ public class SundialGenerator {
 				catch (InterruptedException e)
 				{
 					// Do nothing for now
-				}	
+				}
+				//
+				// END INPUT PROCESSING
+				//
 				
 			}
 		});
