@@ -381,16 +381,16 @@ public class SundialGenerator {
 						
 						lblStatusReady.setText("Status: Drawing..");
 						
-						///////////////////////////////////////////////////////
-						//                                                   //
-						// BEGIN SUNDIAL GENERATION CODE                     //
-						//                                                   //
-						// CURRENT AVAILABLE VARIABLES:                      //
-						//  - date : User selected date in yyyymmdd format   //
-						//  - latitude : Specified latitude as a double      //
-						//  - longitude : Specified longitude as a double    //
-						//                                                   //
-						///////////////////////////////////////////////////////
+						/////////////////////////////////////////////////////////
+						//                                                     //
+						// BEGIN SUNDIAL GENERATION CODE                       //
+						//                                                     //
+						// CURRENT AVAILABLE VARIABLES:                        //
+						//  - date : User selected date in yyyymmdd int format //
+						//  - latitude : Specified latitude as a double        //
+						//  - longitude : Specified longitude as a double      //
+						//                                                     //
+						/////////////////////////////////////////////////////////
 					
 						//Calculate values needed for drawing
 						double[] hourLineAngles = SundialCalculations.getHourLineAngles(latitude, longitude, date);
