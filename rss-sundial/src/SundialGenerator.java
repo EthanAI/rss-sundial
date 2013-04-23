@@ -213,6 +213,19 @@ public class SundialGenerator {
 		panel_2.add(txtEnterLatitudeHere);
 		txtEnterLatitudeHere.setText("Enter Latitude Here");
 		txtEnterLatitudeHere.setColumns(20);
+		//Copy paste from http://stackoverflow.com/questions/10133366/how-to-clear-jtextfield-when-mouse-clicks-the-jtextfield
+		//Deletes the field upon mouse click so user doesnt have to delete "Enter Latitude Here". Drives me nuts :-)
+		txtEnterLatitudeHere.addFocusListener(new FocusListener(){
+	        
+	        public void focusGained(FocusEvent e){
+	        	txtEnterLatitudeHere.setText("");
+	        }
+
+			public void focusLost(FocusEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+	    });
 		
 		// Latitude directional combobox
 		final JComboBox<String> comboBox_2 = new JComboBox<String>();
@@ -234,6 +247,19 @@ public class SundialGenerator {
 		panel_3.add(txtEnterLongitudeHere);
 		txtEnterLongitudeHere.setText("Enter Longitude Here");
 		txtEnterLongitudeHere.setColumns(20);
+		//Copy paste from http://stackoverflow.com/questions/10133366/how-to-clear-jtextfield-when-mouse-clicks-the-jtextfield
+		//Deletes the field upon mouse click so user doesnt have to delete "Enter Latitude Here". Drives me nuts :-)
+		txtEnterLongitudeHere.addFocusListener(new FocusListener(){
+	        
+	        public void focusGained(FocusEvent e){
+	        	txtEnterLongitudeHere.setText("");
+	        }
+
+			public void focusLost(FocusEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+	    });
 		
 		// Longitude directional combobox
 		final JComboBox<String> comboBox_3 = new JComboBox<String>();
@@ -295,7 +321,9 @@ public class SundialGenerator {
 				// User selected to use today's date
 				if (chckbxUseTodaysDate.isSelected())
 				{
-					month = cal.get(Calendar.MONTH);
+					//Java starts counting months from 0
+					//http://docs.oracle.com/javase/6/docs/api/java/util/Calendar.html#MONTH
+					month = cal.get(Calendar.MONTH) + 1;
 					day = cal.get(Calendar.DATE);
 				}
 				// User chose their own dates
