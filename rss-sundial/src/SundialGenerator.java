@@ -46,7 +46,7 @@ public class SundialGenerator {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setResizable(false);
-		frame.setBounds(100, 100, 577, 390);
+		frame.setBounds(100, 100, 577, 403);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		// Sundial Generator title label
@@ -91,9 +91,20 @@ public class SundialGenerator {
 		panel.add(lblStatusReady, "1, 1, fill, center");
 		
 		// Date label
-		JLabel lblDate = new JLabel("Date");
+		JLabel lblDate = new JLabel("Daylight Savings Time & Date");
 		lblDate.setFont(new Font("Tahoma", Font.BOLD, 11));
 		panel.add(lblDate, "1, 3, center, default");
+		
+		JPanel panel_4 = new JPanel();
+		panel.add(panel_4, "1, 5, fill, fill");
+		panel_4.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		JLabel lblUseDst = new JLabel("Use DST:");
+		panel_4.add(lblUseDst);
+		
+		final JComboBox<String> comboBox_4 = new JComboBox<String>();
+		comboBox_4.setModel(new DefaultComboBoxModel<String>(new String[] {"No", "Yes", "Estimate"}));
+		panel_4.add(comboBox_4);
 		
 		// Date input panel
 		JPanel panel_1 = new JPanel();
@@ -145,6 +156,7 @@ public class SundialGenerator {
 		
 		// Option to use today's date
 		final JCheckBox chckbxUseTodaysDate = new JCheckBox("Use Today's Date");
+		panel_1.add(chckbxUseTodaysDate);
 		chckbxUseTodaysDate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (chckbxUseTodaysDate.isSelected())
@@ -161,7 +173,6 @@ public class SundialGenerator {
 				}
 			}
 		});
-		panel.add(chckbxUseTodaysDate, "1, 5, center, default");
 		
 		// Link to find coordinate data
 		JLabel lblFindCoordinateData = new JLabel("Find coordinate data here");
@@ -306,6 +317,9 @@ public class SundialGenerator {
 		btnGenerateSundial.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
+				// Parse DST input
+				int dst = comboBox_4.getSelectedIndex();
+				
 				//
 				// BEGIN DATE CALCULATIONS
 				//
@@ -417,6 +431,9 @@ public class SundialGenerator {
 						//  - date : User selected date in yyyymmdd int format //
 						//  - latitude : Specified latitude as a double        //
 						//  - longitude : Specified longitude as a double      //
+						//  - dst : [0] - No                                   //
+						//          [1] - Yes                                  //
+						//          [2] - Estimate DST                         //
 						//                                                     //
 						/////////////////////////////////////////////////////////
 					
