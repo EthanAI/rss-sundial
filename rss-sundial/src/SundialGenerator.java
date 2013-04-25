@@ -297,30 +297,30 @@ public class SundialGenerator {
                         @Override
                         public void mouseClicked(MouseEvent arg0) {
                                 
-                                try
-                                {
-                                        URI url = new URI("https://code.google.com/p/rss-sundial/");
-                                        
-                                        if (Desktop.isDesktopSupported())
-                            {
-                                try
-                                {
-                                    Desktop.getDesktop().browse(url);
-                                }
-                                catch (Exception e)
-                                {
-                                    // CANNOT BROWSE, DO NOTHING FOR NOW
-                                }
-                            }
-                            else
-                            {
-                                // DESKTOP IS NOT SUPPORTED, DO NOTHING FOR NOW
-                            }
-                                }
-                                catch (URISyntaxException e)
-                                {
-                                        // URISyntaxException, do nothing for now
-                                }       
+	                        try
+	                        {
+	                            URI url = new URI("https://code.google.com/p/rss-sundial/");
+	                                
+	                            if (Desktop.isDesktopSupported())
+	                            {
+	                                try
+	                                {
+	                                    Desktop.getDesktop().browse(url);
+	                                }
+	                                catch (Exception e)
+	                                {
+	                                    // CANNOT BROWSE, DO NOTHING FOR NOW
+	                                }
+	                            }
+	                            else
+	                            {
+	                                // DESKTOP IS NOT SUPPORTED, DO NOTHING FOR NOW
+	                            }
+	                        }
+	                        catch (URISyntaxException e)
+	                        {
+	                                // URISyntaxException, do nothing for now
+	                        }       
                         }
                 });
                 panel.add(lblMesaVerdeReseach, "1, 19, center, default");
@@ -457,7 +457,7 @@ public class SundialGenerator {
                                                 
                                                 //Creates new JFrame for the sundial drawing
                                            	 	JFrame frame = new JFrame("Sundial");
-                                           	 	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                                           	 	//frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); WE DON'T WANT TO CLOSE ON SUNDIAL EXIT
                                            	 	frame.setSize(1370,770);
                                            	 	//Call to the SundialDrawingConstructor
                                            	 	SundialDrawing panel = new SundialDrawing(hourLineAngles, lineLabels, gnomonAngle, SundialCalculations.isNorthernHemisphere(latitude));
