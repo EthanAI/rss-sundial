@@ -1,27 +1,24 @@
+package drawings;
 import java.awt.*;
 import java.awt.geom.Line2D;
-import java.awt.print.PageFormat;
-import java.awt.print.Printable;
-import java.awt.print.PrinterException;
-import java.awt.print.PrinterJob;
 import javax.swing.*;
 
-public class SundialDrawing extends JPanel{
+public class SundialDrawing extends JPanel {
 	//TESTING
-	static double[] hourLineAngles = new double[13];
+	static double[] hourLineAngles;
 	static int[] lineLabels = new int[13];
 	static double gnomonAngle;
 	static boolean isNorthernHemisphere;
 
  // Create a constructor method
- public SundialDrawing(double[] hourLineAngles, int[] lineLabels, double gnomonAngle){
-	 	super();
+ public SundialDrawing(double[] hourLineAngles, int[] lineLabels, double gnomonAngle ,boolean isNorthernHemisphere){
+	 super();
+	 SundialDrawing.hourLineAngles = hourLineAngles;
+	 SundialDrawing.lineLabels = lineLabels;
+	 SundialDrawing.gnomonAngle = gnomonAngle;
+	 SundialDrawing.isNorthernHemisphere = isNorthernHemisphere;
  }
 
-  // Create a constructor method
- public SundialDrawing(){
-     super();
- }
  //converts the angles on the left side of the 12 line to a x coordinate value
  public double leftSideX(double angle, int length){
 	    double x = 800/2 - (length * Math.cos(Math.toRadians(90 + (angle))));
@@ -45,12 +42,12 @@ public class SundialDrawing extends JPanel{
 	}
  //converts the gnomon angle to a x coordinate value
  public double gX(double angle, int length){
-		    double x = 1270 - (length * Math.cos(Math.toRadians(90-(angle))));
+		    double x = 1345 - (length * Math.cos(Math.toRadians(90-(angle))));
 		    return x;
 		}
 //converts the gnomon angle to a y coordinate value
  public double gY(double angle, int length){
-		    double y = 118 - (length * Math.sin(Math.toRadians(90-(angle))));
+		    double y = 120 - (length * Math.sin(Math.toRadians(90-(angle))));
 		    return y;
 		}
  //paint method that is written specifically for the sundial.
@@ -65,7 +62,7 @@ public class SundialDrawing extends JPanel{
 	 **/
 	 double x;
 	 double y;
-	 if(hourLineAngles[0] < -90.00) {
+	 if(hourLineAngles[0] < -110.00) {
 		 x = leftSideX(hourLineAngles[0], 245);
 		 y = leftSideY(hourLineAngles[0], 245);
 		 Line2D line1 = new Line2D.Double(400, 600, x, y);
@@ -145,7 +142,7 @@ public class SundialDrawing extends JPanel{
 	 g2.draw(line12);
 	 g2.drawString(Integer.toString(lineLabels[11]), (int)x, (int)y);
 		 
-	 if(hourLineAngles[12] > 90.00) {
+	 if(hourLineAngles[12] > 110.00) {
 		 x = rightSideX(hourLineAngles[12], 245);
 		 y = rightSideY(hourLineAngles[12], 245);
 		 Line2D lines13 = new Line2D.Double(400, 600, x, y);
@@ -176,14 +173,14 @@ public class SundialDrawing extends JPanel{
 	 }
 		 
 	 // setting up the gnomon triangle
-	 Line2D linega = new Line2D.Double(1345, 5, 1345, 118);
+	 Line2D linega = new Line2D.Double(1345, 5, 1345, 120);
 	 g2.draw(linega);
 	 Line2D linego = new Line2D.Double(1345, 5, 0, 2);
 	 g2.draw(linego);
 		 
 	 x=gX(gnomonAngle, 2000);
 	 y=gY(gnomonAngle, 2000);
-	 Line2D linegh = new Line2D.Double(1345, 118, x, y);
+	 Line2D linegh = new Line2D.Double(1345, 120, x, y);
 	 g2.draw(linegh);
 		 
 	 //draws the horizontal and vertical lines for the user to cut
@@ -195,7 +192,7 @@ public class SundialDrawing extends JPanel{
 	 //listing the instructions
 	 g2.drawString("Step 1: Print out this screen with the following settings:", 820, 200);
 	 g2.drawString("Orientation: Landscape", 860, 215);
-	 g2.drawString("All margins: 0.125 (for best result)", 860, 230);
+	 g2.drawString("IMPORTANT!: All margins: 1 (or else sizing will be off)", 860, 230);
 	 g2.drawString("IMPORTANT!: Print Range: Pages 1 to 1", 860, 245);
 	 g2.drawString("Step 2: Cut the 2 lines surrounding the sundial", 820, 275);
 	 g2.drawString("Step 3: Cut out a triangle where the lines meet to create a gnomon", 820, 305);
@@ -204,47 +201,47 @@ public class SundialDrawing extends JPanel{
 	 g2.drawString("Step 4: Attach your gnomon to the sundial on the 12 line.", 820, 365);
 	 g2.drawString("Position the sundial pointing to the direction specified at the top.", 860, 380);
 	 g2.drawString("Now you can use your sundial!", 860, 410);
- }	
-	
+ }
+}
 
  
-
+/**
  public static void main(String arg[]) throws PrinterException{
 	 	//TESTING
-	 	isNorthernHemisphere = true;
+	 	//isNorthernHemisphere = true;
 	 	
 	 	//TESTING
-	 	hourLineAngles[0] = -90.00;
-		hourLineAngles[1] = -75.00;
-		hourLineAngles[2] = -60.00;
-		hourLineAngles[3] = -45.00;
-		hourLineAngles[4] = -30.00;
-		hourLineAngles[5] = -15.00;
-		hourLineAngles[6] = 00.00;
-		hourLineAngles[7] = 15.00;
-		hourLineAngles[8] = 30.00;
-		hourLineAngles[9] =  45.00;
-		hourLineAngles[10] = 60.00;
-		hourLineAngles[11] = 75.00;
-		hourLineAngles[12] = 90.00;
+	 	//hourLineAngles[0] = -90.00;
+		//hourLineAngles[1] = -75.00;
+		//hourLineAngles[2] = -60.00;
+		//hourLineAngles[3] = -45.00;
+		//hourLineAngles[4] = -30.00;
+		///hourLineAngles[5] = -15.00;
+		//hourLineAngles[6] = 00.00;
+		//hourLineAngles[7] = 15.00;
+		//hourLineAngles[8] = 30.00;
+		//hourLineAngles[9] =  45.00;
+		//hourLineAngles[10] = 60.00;
+		//hourLineAngles[11] = 75.00;
+		//hourLineAngles[12] = 90.00;
 		
 		//TESTING
-		lineLabels[0] = 6;
-		lineLabels[1] = 7;
-		lineLabels[2] = 8;
-		lineLabels[3] = 9;
-		lineLabels[4] = 10;
-		lineLabels[5] = 11;
-		lineLabels[6] = 12;
-		lineLabels[7] = 1;
-		lineLabels[8] = 2;
-		lineLabels[9] = 3;
-		lineLabels[10] = 4;
-		lineLabels[11] = 5;
-		lineLabels[12] = 6;
+		//lineLabels[0] = 6;
+		//lineLabels[1] = 7;
+		//lineLabels[2] = 8;
+		//lineLabels[3] = 9;
+		//lineLabels[4] = 10;
+		//lineLabels[5] = 11;
+		//lineLabels[6] = 12;
+		//lineLabels[7] = 1;
+		//lineLabels[8] = 2;
+		//lineLabels[9] = 3;
+		//lineLabels[10] = 4;
+		//lineLabels[11] = 5;
+		//lineLabels[12] = 6;
 		
 		//TESTING
-		gnomonAngle =85.00;
+		//gnomonAngle =85.00;
 	 
 	 //creates a new JFrame
 	 JFrame frame = new JFrame("Sundial");
@@ -271,43 +268,5 @@ public class SundialDrawing extends JPanel{
      }
  }
 }
+**/
 
-//Printer class that is used to bring up the print dialog.
-class Printer implements Printable {
-    final Component comp;
-
-    public Printer(Component comp){
-        this.comp = comp;
-    }
-
-    @Override
-    public int print(Graphics g, PageFormat format, int page_index) 
-            throws PrinterException {
-        if (page_index > 0) {
-            return Printable.NO_SUCH_PAGE;
-        }
-
-        // get the bounds of the component
-        Dimension dim = comp.getSize();
-        double cHeight = dim.getHeight();
-        double cWidth = dim.getWidth();
-
-        // get the bounds of the printable area
-        double pHeight = format.getImageableHeight();
-        double pWidth = format.getImageableWidth();
-
-        double pXStart = format.getImageableX();
-        double pYStart = format.getImageableY();
-
-        double xRatio = pWidth / cWidth;
-        double yRatio = pHeight / cHeight;
-
-
-        Graphics2D g2 = (Graphics2D) g;
-        g2.translate(pXStart, pYStart);
-        g2.scale(xRatio, yRatio);
-        comp.paint(g2);
-
-        return Printable.PAGE_EXISTS;
-    }
-}
