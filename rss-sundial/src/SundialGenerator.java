@@ -452,7 +452,7 @@ public class SundialGenerator {
                                         
                                                 //Calculate values needed for drawing
                                                 hourLineAngles = SundialCalculations.getHourLineAngles(latitude, longitude, date);
-                                                lineLabels = SundialCalculations.getLineLabels(latitude, longitude, date);
+                                                lineLabels = SundialCalculations.getLineLabels(latitude, longitude, date, dst);
                                                 gnomonAngle = SundialCalculations.getGnomonAngle(latitude);
                                                 
                                                 //Creates new JFrame for the sundial drawing

@@ -9,7 +9,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 
-
 public class SundialCalculationsTest {
 
 	@BeforeClass
@@ -49,8 +48,8 @@ public class SundialCalculationsTest {
 	public void testGetLineLabels() {
 		int[] standardLabels = {6, 7, 8, 9, 10, 11, 12, 1, 2, 3, 4, 5, 6};
 		int[] DSTLabels = {7, 8, 9, 10, 11, 12, 1, 2, 3, 4, 5, 6, 7};
-		assertArrayEquals(standardLabels, SundialCalculations.getLineLabels(30, 45, 20130101));
-		assertArrayEquals(DSTLabels, SundialCalculations.getLineLabels(30, 45, 20130601));
+		assertArrayEquals(standardLabels, SundialCalculations.getLineLabels(30, 45, 20130101, 2));
+		assertArrayEquals(DSTLabels, SundialCalculations.getLineLabels(30, 45, 20130601, 2));
 	}	
 	
 	@Test
@@ -149,10 +148,27 @@ public class SundialCalculationsTest {
 
 	@Test
 	public void testIsDayLightSavings() {
-		assertFalse(SundialCalculations.isDayLightSavings(0, 0, 20130309));
-		assertTrue(SundialCalculations.isDayLightSavings(0, 0, 20130310));
-		assertTrue(SundialCalculations.isDayLightSavings(0, 0, 20131102));
-		assertFalse(SundialCalculations.isDayLightSavings(0, 0, 20131103));
+		int dstYes = 1;
+		int dstNo = 0;
+		int dstEstimate = 2;
+		//test begin border
+		assertFalse(SundialCalculations.isDayLightSavings(0.0, 0.0, 20130309, dstEstimate));
+		assertTrue(SundialCalculations.isDayLightSavings(0.0, 0.0, 20130309, dstYes));
+		assertTrue(SundialCalculations.isDayLightSavings(0.0, 0.0, 20130310, dstEstimate));
+		assertFalse(SundialCalculations.isDayLightSavings(0.0, 0.0, 20130310, dstNo));
+		
+		//test end border
+		assertTrue(SundialCalculations.isDayLightSavings(0.0, 0.0, 20131102, dstEstimate));
+		assertFalse(SundialCalculations.isDayLightSavings(0.0, 0.0, 20131102, dstNo));
+		assertFalse(SundialCalculations.isDayLightSavings(0.0, 0.0, 20131103, dstEstimate));
+		assertTrue(SundialCalculations.isDayLightSavings(0.0, 0.0, 20131103, dstYes));
+		
+		//test hawaii (non dst location)
+		assertTrue(SundialCalculations.isDayLightSavings(21.351341,-157.49, 20130901, dstYes));
+		assertFalse(SundialCalculations.isDayLightSavings(21.351341,-157.49, 20130901, dstEstimate));
+		assertTrue(SundialCalculations.isDayLightSavings(21.351341,-157.49, 20130101, dstYes));
+		assertFalse(SundialCalculations.isDayLightSavings(21.351341,-157.49, 20130101, dstEstimate));
+
 	}
 
 	@Test
