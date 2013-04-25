@@ -455,14 +455,16 @@ public class SundialGenerator {
                                                 lineLabels = SundialCalculations.getLineLabels(latitude, longitude, date);
                                                 gnomonAngle = SundialCalculations.getGnomonAngle(latitude);
                                                 
+                                                //Creates new JFrame for the sundial drawing
                                            	 	JFrame frame = new JFrame("Sundial");
                                            	 	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                                            	 	frame.setSize(1370,770);
-
+                                           	 	//Call to the SundialDrawingConstructor
                                            	 	SundialDrawing panel = new SundialDrawing(hourLineAngles, lineLabels, gnomonAngle, SundialCalculations.isNorthernHemisphere(latitude));
                                            	 	frame.setContentPane(panel);          
                                            	 	frame.setVisible(true); 
                                            	 	
+                                           	 	//Brings up the print dialog for the sundial drawing
                                                 PrinterJob pjob = PrinterJob.getPrinterJob();
                                                 PageFormat preformat = pjob.defaultPage();
                                                 preformat.setOrientation(PageFormat.LANDSCAPE);
