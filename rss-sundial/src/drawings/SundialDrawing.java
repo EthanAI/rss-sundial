@@ -27,7 +27,7 @@ public class SundialDrawing extends JPanel {
 
  //converts the angles on the left side of the 12 line to a y coordinate value
  public double leftSideY(double angle, int length){
-	    double y = 600 - (length * Math.sin(Math.toRadians(90 + (angle))));
+	    double y = 620 - (length * Math.sin(Math.toRadians(90 + (angle))));
 	    return y;
 	}
  //converts the angles on the right side of the 12 line to a x coordinate value
@@ -37,7 +37,7 @@ public class SundialDrawing extends JPanel {
 	}
  //converts the angles on the right side of the 12 line to a y coordinate value
  public double rightSideY(double angle, int length){
-	    double y = 600 + (length * Math.cos(Math.toRadians(180+(angle))));
+	    double y = 620 + (length * Math.cos(Math.toRadians(180+(angle))));
 	    return y;
 	}
  //converts the gnomon angle to a x coordinate value
@@ -47,7 +47,7 @@ public class SundialDrawing extends JPanel {
 		}
 //converts the gnomon angle to a y coordinate value
  public double gY(double angle, int length){
-		    double y = 120 - (length * Math.sin(Math.toRadians(90-(angle))));
+		    double y = 770 - (length * Math.sin(Math.toRadians(90-(angle))));
 		    return y;
 		}
  //paint method that is written specifically for the sundial.
