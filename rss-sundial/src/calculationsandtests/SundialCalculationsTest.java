@@ -48,8 +48,8 @@ public class SundialCalculationsTest {
 	public void testGetLineLabels() {
 		int[] standardLabels = {6, 7, 8, 9, 10, 11, 12, 1, 2, 3, 4, 5, 6};
 		int[] DSTLabels = {7, 8, 9, 10, 11, 12, 1, 2, 3, 4, 5, 6, 7};
-		assertArrayEquals(standardLabels, SundialCalculations.getLineLabels(30, 45, 20130101, 2));
-		assertArrayEquals(DSTLabels, SundialCalculations.getLineLabels(30, 45, 20130601, 2));
+		assertArrayEquals(standardLabels, SundialCalculations.getLineLabels(30, 45, 20130101, 0));
+		assertArrayEquals(DSTLabels, SundialCalculations.getLineLabels(30, 45, 20130601, 0));
 	}	
 	
 	@Test
@@ -148,9 +148,9 @@ public class SundialCalculationsTest {
 
 	@Test
 	public void testIsDayLightSavings() {
-		int dstYes = 1;
-		int dstNo = 0;
-		int dstEstimate = 2;
+		int dstYes = 2;
+		int dstNo = 1;
+		int dstEstimate = 0;
 		//test begin border
 		assertFalse(SundialCalculations.isDayLightSavings(0.0, 0.0, 20130309, dstEstimate));
 		assertTrue(SundialCalculations.isDayLightSavings(0.0, 0.0, 20130309, dstYes));
