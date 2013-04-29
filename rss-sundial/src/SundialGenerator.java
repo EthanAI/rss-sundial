@@ -63,7 +63,7 @@ public class SundialGenerator {
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 
                 // Sundial Generator title label                
-                JLabel lblSundialGenerator = new JLabel(new ImageIcon(getClass().getResource("TitleBanner.jpg")));
+                JLabel lblSundialGenerator = new JLabel(new ImageIcon(getClass().getResource("images/TitleBanner.jpg")));
                 
                 lblSundialGenerator.setHorizontalAlignment(SwingConstants.CENTER);
                 frame.getContentPane().add(lblSundialGenerator, BorderLayout.NORTH);
