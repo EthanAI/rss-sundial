@@ -8,7 +8,6 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 import com.jgoodies.forms.factories.FormFactory;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -64,9 +63,8 @@ public class SundialGenerator {
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 
                 // Sundial Generator title label                
-                JLabel lblSundialGenerator = new JLabel(new ImageIcon(getClass().getResource("images/TitleBanner.jpg")));
+                JLabel lblSundialGenerator = new JLabel(new ImageIcon(getClass().getResource("TitleBanner.jpg")));
                 
-                //lblSundialGenerator.setFont(new Font("Tahoma", Font.BOLD, 27));
                 lblSundialGenerator.setHorizontalAlignment(SwingConstants.CENTER);
                 frame.getContentPane().add(lblSundialGenerator, BorderLayout.NORTH);
                 
