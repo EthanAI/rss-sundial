@@ -206,6 +206,15 @@ public class SundialCalculationsTest {
 		assertFalse(SundialCalculations.withinGlobeQuandrant(0, 16, 30, -30, 15, -15));
 		assertTrue(SundialCalculations.withinGlobeQuandrant(0, -15, 30, -30, 15, -15));
 		assertFalse(SundialCalculations.withinGlobeQuandrant(0, -16, 30, -30, 15, -15));
+		
+		//test hawaii
+		double hawaiiNLat = 30;
+		double hawaiiSLat = 15;
+		double hawaiiELong = -150;
+		double hawaiiWLong = -170;
+		double latitude = 21.351341;
+		double longitude = -157.49;
+		assertTrue(SundialCalculations.withinGlobeQuandrant(latitude, longitude, hawaiiNLat, hawaiiSLat, hawaiiELong, hawaiiWLong));
 	}
 
 }

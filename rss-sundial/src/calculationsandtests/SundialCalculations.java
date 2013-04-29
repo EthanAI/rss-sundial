@@ -15,9 +15,14 @@ public class SundialCalculations {
 		//Standard time zone: UTC/GMT -10 hours 
 		//21.351341,-157.900658
 		//fudge it for HST time zone: 21.351341,-157.49 to get experimental data
-		double[] testAngles = getHourLineAngles(21.351341,-157.49, 20130420);
-		for(int i = 0; i < testAngles.length; i++)
-			System.out.println(testAngles[i]);
+		//debug switch
+		boolean debugMode = false;
+		if(debugMode) {
+			double[] testAngles = getHourLineAngles(21.351341,-157.49, 20130429);
+			int[] testLabels = getLineLabels(21.351341,-157.49, 20130429, 0);
+			for(int i = 0; i < testAngles.length; i++)
+				System.out.println(testAngles[i] + " " + testLabels[i]);
+		}
 	}
 	
 	/*
@@ -94,7 +99,7 @@ public class SundialCalculations {
 		int[] lineLabels = new int[13];
 		for(int i = 0; i <= 12; i++) { 
 			lineLabels[i] = i + 6;  //go from 6 am to 6 pm
-			if(isDayLightSavings(longitude, latitude, date, dstFlag))
+			if(isDayLightSavings(latitude, longitude, date, dstFlag))
 				lineLabels[i]++;   //just increase labels by 1 hr to handle DST correction
 			
 			if(lineLabels[i] > 12) //Convert military time (18:00) to civilian time (6:00)
