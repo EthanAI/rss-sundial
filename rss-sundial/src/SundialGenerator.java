@@ -116,7 +116,7 @@ public class SundialGenerator {
                 panel_4.add(lblUseDst);
                 
                 final JComboBox<String> comboBox_4 = new JComboBox<String>();
-                comboBox_4.setModel(new DefaultComboBoxModel<String>(new String[] {"No", "Yes", "Estimate"}));
+                comboBox_4.setModel(new DefaultComboBoxModel(new String[] {"Estimate", "No", "Yes"}));
                 panel_4.add(comboBox_4);
                 
                 // Date input panel
@@ -451,9 +451,9 @@ public class SundialGenerator {
                                                 //  - date : User selected date in yyyymmdd int format //
                                                 //  - latitude : Specified latitude as a double        //
                                                 //  - longitude : Specified longitude as a double      //
-                                                //  - dst : [0] - No                                   //
-                                                //          [1] - Yes                                  //
-                                                //          [2] - Estimate DST                         //
+                                                //  - dst : [0] - Estimate DST                         //
+                                                //          [1] - No                                   //
+                                                //          [2] - Yes                                  //
                                                 //                                                     //
                                                 /////////////////////////////////////////////////////////
                                         
