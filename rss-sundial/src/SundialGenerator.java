@@ -8,6 +8,7 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 import com.jgoodies.forms.factories.FormFactory;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -62,9 +63,10 @@ public class SundialGenerator {
                 frame.setBounds(100, 100, 577, 403);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 
-                // Sundial Generator title label
-                JLabel lblSundialGenerator = new JLabel("Sundial Generator");
-                lblSundialGenerator.setFont(new Font("Tahoma", Font.BOLD, 27));
+                // Sundial Generator title label                
+                JLabel lblSundialGenerator = new JLabel(new ImageIcon(getClass().getResource("images/TitleBanner.jpg")));
+                
+                //lblSundialGenerator.setFont(new Font("Tahoma", Font.BOLD, 27));
                 lblSundialGenerator.setHorizontalAlignment(SwingConstants.CENTER);
                 frame.getContentPane().add(lblSundialGenerator, BorderLayout.NORTH);
                 
@@ -242,7 +244,11 @@ public class SundialGenerator {
                 txtEnterLatitudeHere.addFocusListener(new FocusListener(){
                 
                 public void focusGained(FocusEvent e){
-                        txtEnterLatitudeHere.setText("");
+                    if (txtEnterLatitudeHere.getText().equals("Enter Latitude Here"))    
+                    {
+                    	txtEnterLatitudeHere.setText("");
+                    }
+                	
                 }
 
                         public void focusLost(FocusEvent arg0) {
@@ -276,7 +282,10 @@ public class SundialGenerator {
                 txtEnterLongitudeHere.addFocusListener(new FocusListener(){
                 
                 public void focusGained(FocusEvent e){
-                        txtEnterLongitudeHere.setText("");
+                	if (txtEnterLongitudeHere.getText().equals("Enter Longitude Here"))    
+                    {
+                    	txtEnterLongitudeHere.setText("");
+                    }
                 }
 
                         public void focusLost(FocusEvent arg0) {
@@ -457,7 +466,6 @@ public class SundialGenerator {
                                                 
                                                 //Creates new JFrame for the sundial drawing
                                            	 	JFrame frame = new JFrame("Sundial");
-                                           	 	//frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); WE DON'T WANT TO CLOSE ON SUNDIAL EXIT
                                            	 	frame.setSize(1370,770);
                                            	 	//Call to the SundialDrawingConstructor
                                            	 	SundialDrawing panel = new SundialDrawing(hourLineAngles, lineLabels, gnomonAngle, SundialCalculations.isNorthernHemisphere(latitude));
