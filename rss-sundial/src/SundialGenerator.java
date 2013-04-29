@@ -60,7 +60,7 @@ public class SundialGenerator {
         private void initialize() {
                 frame = new JFrame();
                 frame.setResizable(false);
-                frame.setBounds(100, 100, 577, 403);
+                frame.setBounds(100, 100, 578, 414);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 
                 // Sundial Generator title label                
@@ -75,27 +75,27 @@ public class SundialGenerator {
                 panel.setBorder(new LineBorder(new Color(0, 0, 0), 2));
                 frame.getContentPane().add(panel, BorderLayout.CENTER);
                 panel.setLayout(new FormLayout(new ColumnSpec[] {
-                                ColumnSpec.decode("434px:grow"),},
-                        new RowSpec[] {
-                                RowSpec.decode("25px"),
-                                FormFactory.RELATED_GAP_ROWSPEC,
-                                FormFactory.DEFAULT_ROWSPEC,
-                                FormFactory.RELATED_GAP_ROWSPEC,
-                                FormFactory.DEFAULT_ROWSPEC,
-                                FormFactory.RELATED_GAP_ROWSPEC,
-                                RowSpec.decode("max(11dlu;default)"),
-                                FormFactory.RELATED_GAP_ROWSPEC,
-                                FormFactory.DEFAULT_ROWSPEC,
-                                FormFactory.RELATED_GAP_ROWSPEC,
-                                FormFactory.DEFAULT_ROWSPEC,
-                                FormFactory.RELATED_GAP_ROWSPEC,
-                                RowSpec.decode("max(17dlu;default)"),
-                                FormFactory.RELATED_GAP_ROWSPEC,
-                                FormFactory.DEFAULT_ROWSPEC,
-                                FormFactory.RELATED_GAP_ROWSPEC,
-                                RowSpec.decode("max(18dlu;default)"),
-                                FormFactory.RELATED_GAP_ROWSPEC,
-                                FormFactory.DEFAULT_ROWSPEC,}));
+                		ColumnSpec.decode("434px:grow"),},
+                	new RowSpec[] {
+                		RowSpec.decode("25px"),
+                		FormFactory.RELATED_GAP_ROWSPEC,
+                		FormFactory.DEFAULT_ROWSPEC,
+                		FormFactory.RELATED_GAP_ROWSPEC,
+                		FormFactory.DEFAULT_ROWSPEC,
+                		FormFactory.RELATED_GAP_ROWSPEC,
+                		RowSpec.decode("max(11dlu;default)"),
+                		FormFactory.RELATED_GAP_ROWSPEC,
+                		FormFactory.DEFAULT_ROWSPEC,
+                		FormFactory.RELATED_GAP_ROWSPEC,
+                		FormFactory.DEFAULT_ROWSPEC,
+                		FormFactory.RELATED_GAP_ROWSPEC,
+                		RowSpec.decode("max(15dlu;default)"),
+                		FormFactory.RELATED_GAP_ROWSPEC,
+                		FormFactory.DEFAULT_ROWSPEC,
+                		FormFactory.RELATED_GAP_ROWSPEC,
+                		RowSpec.decode("max(15dlu;default)"),
+                		FormFactory.RELATED_GAP_ROWSPEC,
+                		FormFactory.DEFAULT_ROWSPEC,}));
                 
                 // Status label
                 final JLabel lblStatusReady = new JLabel("Status: Ready");
