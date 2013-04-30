@@ -1,5 +1,17 @@
 
 import calculationsandtests.SundialCalculations;
+
+/*
+ * 
+ * SundialGenerator
+ * 
+ * Description:
+ *   Program that generates a printable sundial based on user's input of date and coordinate information
+ *   
+ * @authors:
+ *   Reid Satsuma, Ethan Smith, Christopher Rodrigues
+ * 
+ */
 import drawings.Printer;
 import drawings.SundialDrawing;
 
@@ -116,7 +128,7 @@ public class SundialGenerator {
                 panel_4.add(lblUseDst);
                 
                 final JComboBox<String> comboBox_4 = new JComboBox<String>();
-                comboBox_4.setModel(new DefaultComboBoxModel(new String[] {"Estimate", "No", "Yes"}));
+                comboBox_4.setModel(new DefaultComboBoxModel<String>(new String[] {"Estimate", "No", "Yes"}));
                 panel_4.add(comboBox_4);
                 
                 // Date input panel
@@ -200,20 +212,20 @@ public class SundialGenerator {
                                         URI url = new URI("http://www.worldatlas.com/aatlas/findlatlong.htm");
                                         
                                         if (Desktop.isDesktopSupported())
-                            {
-                                try
-                                {
-                                    Desktop.getDesktop().browse(url);
-                                }
-                                catch (Exception e)
-                                {
-                                    // CANNOT BROWSE, DO NOTHING FOR NOW
-                                }
-                            }
-                            else
-                            {
-                                // DESKTOP IS NOT SUPPORTED, DO NOTHING FOR NOW
-                            }
+				                        {
+				                            try
+				                            {
+				                                Desktop.getDesktop().browse(url);
+				                            }
+				                            catch (Exception e)
+				                            {
+				                                // CANNOT BROWSE, DO NOTHING FOR NOW
+				                            }
+				                        }
+				                        else
+				                        {
+				                            // DESKTOP IS NOT SUPPORTED, DO NOTHING FOR NOW
+				                        }
                                 }
                                 catch (URISyntaxException e)
                                 {
@@ -237,23 +249,20 @@ public class SundialGenerator {
                 panel_2.add(txtEnterLatitudeHere);
                 txtEnterLatitudeHere.setText("Enter Latitude Here");
                 txtEnterLatitudeHere.setColumns(20);
-                //Copy paste from http://stackoverflow.com/questions/10133366/how-to-clear-jtextfield-when-mouse-clicks-the-jtextfield
-                //Deletes the field upon mouse click so user doesnt have to delete "Enter Latitude Here". Drives me nuts :-)
                 txtEnterLatitudeHere.addFocusListener(new FocusListener(){
-                
-                public void focusGained(FocusEvent e){
-                    if (txtEnterLatitudeHere.getText().equals("Enter Latitude Here"))    
-                    {
-                    	txtEnterLatitudeHere.setText("");
-                    }
-                	
-                }
+	                public void focusGained(FocusEvent e){
+	                    if (txtEnterLatitudeHere.getText().equals("Enter Latitude Here"))    
+	                    {
+	                    	txtEnterLatitudeHere.setText("");
+	                    }
+	                	
+	                }
 
-                        public void focusLost(FocusEvent arg0) {
-                                // TODO Auto-generated method stub
-                                
-                        }
-            });
+                    public void focusLost(FocusEvent arg0) {
+                            // TODO Auto-generated method stub
+                            
+                    }
+                });
                 
                 // Latitude directional combobox
                 final JComboBox<String> comboBox_2 = new JComboBox<String>();
@@ -275,22 +284,19 @@ public class SundialGenerator {
                 panel_3.add(txtEnterLongitudeHere);
                 txtEnterLongitudeHere.setText("Enter Longitude Here");
                 txtEnterLongitudeHere.setColumns(20);
-                //Copy paste from http://stackoverflow.com/questions/10133366/how-to-clear-jtextfield-when-mouse-clicks-the-jtextfield
-                //Deletes the field upon mouse click so user doesnt have to delete "Enter Latitude Here". Drives me nuts :-)
-                txtEnterLongitudeHere.addFocusListener(new FocusListener(){
-                
-                public void focusGained(FocusEvent e){
-                	if (txtEnterLongitudeHere.getText().equals("Enter Longitude Here"))    
-                    {
-                    	txtEnterLongitudeHere.setText("");
-                    }
-                }
+                txtEnterLongitudeHere.addFocusListener(new FocusListener(){  
+	                public void focusGained(FocusEvent e){
+	                	if (txtEnterLongitudeHere.getText().equals("Enter Longitude Here"))    
+	                    {
+	                    	txtEnterLongitudeHere.setText("");
+	                    }
+	                }
 
-                        public void focusLost(FocusEvent arg0) {
-                                // TODO Auto-generated method stub
-                                
-                        }
-            });
+                    public void focusLost(FocusEvent arg0) {
+                            // TODO Auto-generated method stub
+                            
+                    }
+                });
                 
                 // Longitude directional combobox
                 final JComboBox<String> comboBox_3 = new JComboBox<String>();
@@ -408,17 +414,17 @@ public class SundialGenerator {
                                         {
                                                 lblStatusReady.setText("Status: Negative coordinates should be indicated with S and W!");
                                         }
-                                        else if (latitude > 90 && longitude > 180)
-                                        {
-                                                lblStatusReady.setText("Status: Invalid latitude and longitude!");
-                                        }
-                                        else if (latitude > 90)
-                                        {
-                                                lblStatusReady.setText("Status: Invalid latitude!");
-                                        }
                                         else if (latitude < 0)
                                         {
                                                 lblStatusReady.setText("Status: Negative latitude should be indicated with S!");
+                                        }
+                                        else if (latitude < 20 || latitude > 70)
+                                        {
+                                        		lblStatusReady.setText("Status: Latitudes lower than 20 and higher than 70 degrees not supported!");
+                                        }
+                                        else if (latitude > 70 && longitude > 180)
+                                        {
+                                                lblStatusReady.setText("Status: Invalid latitude and longitude!");
                                         }
                                         else if (longitude > 180)
                                         {
@@ -428,7 +434,7 @@ public class SundialGenerator {
                                         {
                                                 lblStatusReady.setText("Status: Negative longitude should be indicated with W!");
                                         }
-                                        // Recieved valid inputs
+                                        // Received valid inputs
                                         else
                                         {
                                                 // APPLYING DIRECTIONAL MODIFIERS TO COORDINATES
@@ -488,23 +494,6 @@ public class SundialGenerator {
 															e.printStackTrace();
 														}
                                                     }
-                                                }
-                                                
-                                                //debug code to test the values
-                                                /*
-                                                System.out.println(latitude + " " + longitude + " " + date);
-                                                System.out.println(gnomonAngle);
-                                                for(int i = 0; i < hourLineAngles.length; i++) {
-                                                        System.out.println(hourLineAngles[i] + " " + lineLabels[i]);
-                                                }
-                                                */
-                                                
-                                                if(SundialCalculations.isNorthernHemisphere(latitude)) {
-                                                        
-                                                }
-                                                //southern hemisphere drawing will be different. 
-                                                else {
-                                                        
                                                 }
                                                 
                                                 ///////////////////////////////////////////////////////
