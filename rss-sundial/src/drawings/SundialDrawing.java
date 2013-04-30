@@ -1,10 +1,11 @@
 package drawings;
 import java.awt.*;
 import java.awt.geom.Line2D;
+import java.awt.geom.Line2D.Double;
+
 import javax.swing.*;
 
 public class SundialDrawing extends JPanel {
-	//TESTING
 	static double[] hourLineAngles;
 	static int[] lineLabels = new int[13];
 	static double gnomonAngle;
@@ -42,7 +43,7 @@ public class SundialDrawing extends JPanel {
 	}
  //converts the gnomon angle to a x coordinate value
  public double gX(double angle, int length){
-		    double x = 1345 - (length * Math.cos(Math.toRadians(90-(angle))));
+		    double x = 1340 - (length * Math.cos(Math.toRadians(90-(angle))));
 		    return x;
 		}
 //converts the gnomon angle to a y coordinate value
@@ -57,100 +58,100 @@ public class SundialDrawing extends JPanel {
 	 /**"
 	  * dial" of the sundial 
 	  * draws out each line of the sundial accordingly and adds labels to each line
-	  * all lines are the same length "375", except for the two 6 hour lines if they are < -90 or >90
+	  * all lines are the same length "350", except for the two 6 hour lines if they are < -90 or >90
 	  * all lines start at position 400,600 and go out from there based  on the angles.
 	 **/
 	 double x;
 	 double y;
-	 if(hourLineAngles[0] < -110.00) {
+	 if(hourLineAngles[0] < -100.00) {
 		 x = leftSideX(hourLineAngles[0], 245);
 		 y = leftSideY(hourLineAngles[0], 245);
 		 Line2D line1 = new Line2D.Double(400, 600, x, y);
 		 g2.draw(line1);
 		 g2.drawString(Integer.toString(lineLabels[0]), (int)x, (int)y-10);
 	} else {
-		x = leftSideX(hourLineAngles[0], 375);
-		y = leftSideY(hourLineAngles[0], 375);
+		x = leftSideX(hourLineAngles[0], 350);
+		y = leftSideY(hourLineAngles[0], 350);
 		Line2D line1 = new Line2D.Double(400, 600, x, y);
 		g2.draw(line1);
 		g2.drawString(Integer.toString(lineLabels[0]), (int)x, (int)y+12);
 	}
 	 
-	 x = leftSideX(hourLineAngles[1], 375);
-	 y = leftSideY(hourLineAngles[1], 375);
+	 x = leftSideX(hourLineAngles[1], 350);
+	 y = leftSideY(hourLineAngles[1], 350);
 	 Line2D line2 = new Line2D.Double(400, 600, x, y);
 	 g2.draw(line2);
 	 g2.drawString(Integer.toString(lineLabels[1]), (int)x, (int)y);
 	 
-	 x = leftSideX(hourLineAngles[2], 375);
-	 y = leftSideY(hourLineAngles[2], 375);
+	 x = leftSideX(hourLineAngles[2], 350);
+	 y = leftSideY(hourLineAngles[2], 350);
 	 Line2D line3 = new Line2D.Double(400, 600, x, y);
 	 g2.draw(line3);
 	 g2.drawString(Integer.toString(lineLabels[2]), (int)x, (int)y);
 	 
-	 x = leftSideX(hourLineAngles[3], 375);
-	 y = leftSideY(hourLineAngles[3], 375);
+	 x = leftSideX(hourLineAngles[3], 350);
+	 y = leftSideY(hourLineAngles[3], 350);
 	 Line2D line4 = new Line2D.Double(400, 600, x, y);
 	 g2.draw(line4);
 	 g2.drawString(Integer.toString(lineLabels[3]), (int)x, (int)y);
 	 
-	 x = leftSideX(hourLineAngles[4], 375);
-	 y = leftSideY(hourLineAngles[4], 375);
+	 x = leftSideX(hourLineAngles[4], 350);
+	 y = leftSideY(hourLineAngles[4], 350);
 	 Line2D line5 = new Line2D.Double(400, 600, x, y);
 	 g2.draw(line5);
 	 g2.drawString(Integer.toString(lineLabels[4]), (int)x, (int)y);
 	 
-	 x = leftSideX(hourLineAngles[5], 375);
-	 y = leftSideY(hourLineAngles[5], 375);
+	 x = leftSideX(hourLineAngles[5], 350);
+	 y = leftSideY(hourLineAngles[5], 350);
 	 Line2D line6 = new Line2D.Double(400, 600, x, y);
 	 g2.draw(line6);
 	 g2.drawString(Integer.toString(lineLabels[5]), (int)x, (int)y);
 	 
-	 x= leftSideX(hourLineAngles[6], 375);
-	 y = leftSideY(hourLineAngles[6], 375);
+	 x= leftSideX(hourLineAngles[6], 350);
+	 y = leftSideY(hourLineAngles[6], 350);
 	 Line2D line7 = new Line2D.Double(400, 600, x, y);
 	 g2.draw(line7);
-	 g2.drawString(Integer.toString(lineLabels[6]), (int)x, (int)y);
+	 g2.drawString(Integer.toString(lineLabels[6]), (int)x-15, (int)y);
 	 
-	 x = rightSideX(hourLineAngles[7], 375);
-	 y = rightSideY(hourLineAngles[7], 375);
+	 x = rightSideX(hourLineAngles[7], 350);
+	 y = rightSideY(hourLineAngles[7], 350);
 	 Line2D line8 = new Line2D.Double(400, 600, x, y);
 	 g2.draw(line8);
 	 g2.drawString(Integer.toString(lineLabels[7]), (int)x, (int)y);
 	 
-	 x = rightSideX(hourLineAngles[8], 375);
-	 y = rightSideY(hourLineAngles[8], 375);
+	 x = rightSideX(hourLineAngles[8], 350);
+	 y = rightSideY(hourLineAngles[8], 350);
 	 Line2D line9 = new Line2D.Double(400, 600, x, y);
 	 g2.draw(line9);
 	 g2.drawString(Integer.toString(lineLabels[8]), (int)x, (int)y);
 	 
-	 x = rightSideX(hourLineAngles[9], 375);
-	 y = rightSideY(hourLineAngles[9], 375);
+	 x = rightSideX(hourLineAngles[9], 350);
+	 y = rightSideY(hourLineAngles[9], 350);
 	 Line2D line10 = new Line2D.Double(400, 600, x, y);
 	 g2.draw(line10);
 	 g2.drawString(Integer.toString(lineLabels[9]), (int)x, (int)y);
 		 
-	 x = rightSideX(hourLineAngles[10], 375);
-	 y = rightSideY(hourLineAngles[10], 375);
+	 x = rightSideX(hourLineAngles[10], 350);
+	 y = rightSideY(hourLineAngles[10], 350);
 	 Line2D line11 = new Line2D.Double(400, 600, x, y);
 	 g2.draw(line11);
 	 g2.drawString(Integer.toString(lineLabels[10]), (int)x, (int)y);
 		 
-	 x = rightSideX(hourLineAngles[11], 375);
-	 y = rightSideY(hourLineAngles[11], 375);
+	 x = rightSideX(hourLineAngles[11], 350);
+	 y = rightSideY(hourLineAngles[11], 350);
 	 Line2D line12 = new Line2D.Double(400, 600, x, y);
 	 g2.draw(line12);
 	 g2.drawString(Integer.toString(lineLabels[11]), (int)x, (int)y);
 		 
-	 if(hourLineAngles[12] > 110.00) {
+	 if(hourLineAngles[12] > 100.00) {
 		 x = rightSideX(hourLineAngles[12], 245);
 		 y = rightSideY(hourLineAngles[12], 245);
 		 Line2D lines13 = new Line2D.Double(400, 600, x, y);
 		 g2.draw(lines13);
 		 g2.drawString(Integer.toString(lineLabels[12]), (int)x, (int)y-10);
 	}else {
-		x = rightSideX(hourLineAngles[12], 375);
-		y = rightSideY(hourLineAngles[12], 375);
+		x = rightSideX(hourLineAngles[12], 350);
+		y = rightSideY(hourLineAngles[12], 350);
 		Line2D lines13 = new Line2D.Double(400, 600, x, y);
 		g2.draw(lines13);
 		g2.drawString(Integer.toString(lineLabels[12]), (int)x, (int)y+12);
@@ -164,109 +165,55 @@ public class SundialDrawing extends JPanel {
 		g2.drawString("AM", 300, 650);
 		g2.drawString("PM", 500, 650);
 	}
+	 
+	 //setting up the line that the user will place the gnomon on
+	 Line2D gline = new Line2D.Double(400, 600, 400, 235);
+	 g2.draw(gline);
+	 Line2D glineleft = new Line2D.Double(400, 235, 390, 245);
+	 g2.draw(glineleft);
+	 Line2D glineright = new Line2D.Double(400, 235, 410, 245);
+	 g2.draw(glineright);
 		 
 	 //checks if the user is located in the northern or southern hemisphere, and prints the direction accordingly
 	 if(isNorthernHemisphere) {
-		 g2.drawString("True North", (int) leftSideX(hourLineAngles[6], 375)-25, (int)leftSideY(hourLineAngles[6], 375) - 50);
+		 g2.drawString("True North", 375, 225);
 	 }else {
-		 g2.drawString("True South", (int) leftSideX(hourLineAngles[6], 375)-25, (int)leftSideY(hourLineAngles[6], 375) - 50);
+		 g2.drawString("True South", 375, 225);
 	 }
 		 
-	 // setting up the gnomon triangle
-	 Line2D linega = new Line2D.Double(1345, 5, 1345, 120);
+	 //setting up the gnomon triangle
+	 Line2D linega = new Line2D.Double(1340, 5, 1340, 200);
 	 g2.draw(linega);
-	 Line2D linego = new Line2D.Double(1345, 5, 0, 2);
+	 Line2D linego = new Line2D.Double(1340, 5, 0, 2);
 	 g2.draw(linego);
+	 
+	 g2.drawString("a", 1343, 100);
 		 
 	 x=gX(gnomonAngle, 2000);
 	 y=gY(gnomonAngle, 2000);
-	 Line2D linegh = new Line2D.Double(1345, 120, x, y);
+	 Line2D linegh = new Line2D.Double(1340, 200, x, y);
 	 g2.draw(linegh);
 		 
 	 //draws the horizontal and vertical lines for the user to cut
-	 Line2D middlecut = new Line2D.Double (1500, 150, 0, 150);
+	 Line2D middlecut = new Line2D.Double (1500, 210, 0, 210);
 	 g2.draw(middlecut);
-	 Line2D verticalcut = new Line2D.Double(800, 150, 800, 800);
+	 Line2D verticalcut = new Line2D.Double(800, 210, 800, 800);
 	 g2.draw(verticalcut);
 		 
 	 //listing the instructions
-	 g2.drawString("Step 1: Print out this screen with the following settings:", 820, 200);
-	 g2.drawString("Orientation: Landscape", 860, 215);
-	 g2.drawString("IMPORTANT!: All margins: 1 (or else sizing will be off)", 860, 230);
-	 g2.drawString("IMPORTANT!: Print Range: Pages 1 to 1", 860, 245);
-	 g2.drawString("Step 2: Cut the 2 lines surrounding the sundial", 820, 275);
-	 g2.drawString("Step 3: Cut out a triangle where the lines meet to create a gnomon", 820, 305);
-	 g2.drawString("(if the lines do not meet, just cut it till the lines stop,", 860, 320);
-	 g2.drawString("then cut a straight line parallel to the border)", 860, 335);
-	 g2.drawString("Step 4: Attach your gnomon to the sundial on the 12 line.", 820, 365);
-	 g2.drawString("Position the sundial pointing to the direction specified at the top.", 860, 380);
-	 g2.drawString("Now you can use your sundial!", 860, 410);
+	 g2.drawString("Step 1: Print out this screen with the following settings:", 820, 230);
+	 g2.drawString("Orientation: Landscape", 860, 245);
+	 g2.drawString("IMPORTANT!: All margins: 1 (or else sizing will be off)", 860, 260);
+	 g2.drawString("IMPORTANT!: Print Range: Pages 1 to 1", 860, 275);
+	 g2.drawString("Step 2: Cut the 2 lines surrounding the sundial", 820, 305);
+	 g2.drawString("Step 3: Cut out a triangle where the lines meet to create a gnomon", 820, 335);
+	 g2.drawString("(if the lines do not meet, just cut it till the lines stop,", 860, 350);
+	 g2.drawString("then cut a straight line parallel to the border)", 860, 365);
+	 g2.drawString("Step 4: Attach the side labeled 'a' on the gnomon to the sundial", 820, 395);
+	 g2.drawString("on the long line with the arrow.", 860, 410);
+	 g2.drawString("Position the sundial with the arrow pointing to the direction specified", 860, 425); 
+	 g2.drawString("at the top.", 860, 440);
+	 g2.drawString("Now you can use your sundial!", 860, 470);
  }
 }
-
- 
-/**
- public static void main(String arg[]) throws PrinterException{
-	 	//TESTING
-	 	//isNorthernHemisphere = true;
-	 	
-	 	//TESTING
-	 	//hourLineAngles[0] = -90.00;
-		//hourLineAngles[1] = -75.00;
-		//hourLineAngles[2] = -60.00;
-		//hourLineAngles[3] = -45.00;
-		//hourLineAngles[4] = -30.00;
-		///hourLineAngles[5] = -15.00;
-		//hourLineAngles[6] = 00.00;
-		//hourLineAngles[7] = 15.00;
-		//hourLineAngles[8] = 30.00;
-		//hourLineAngles[9] =  45.00;
-		//hourLineAngles[10] = 60.00;
-		//hourLineAngles[11] = 75.00;
-		//hourLineAngles[12] = 90.00;
-		
-		//TESTING
-		//lineLabels[0] = 6;
-		//lineLabels[1] = 7;
-		//lineLabels[2] = 8;
-		//lineLabels[3] = 9;
-		//lineLabels[4] = 10;
-		//lineLabels[5] = 11;
-		//lineLabels[6] = 12;
-		//lineLabels[7] = 1;
-		//lineLabels[8] = 2;
-		//lineLabels[9] = 3;
-		//lineLabels[10] = 4;
-		//lineLabels[11] = 5;
-		//lineLabels[12] = 6;
-		
-		//TESTING
-		//gnomonAngle =85.00;
-	 
-	 //creates a new JFrame
-	 JFrame frame = new JFrame("Sundial");
-     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-     frame.setSize(1370,770);
-
-     SundialDrawing panel = new SundialDrawing(hourLineAngles, lineLabels, gnomonAngle);
-     frame.setContentPane(panel);          
-     frame.setVisible(true); 
-     
-     //setting up the print dialog	 
-     PrinterJob pjob = PrinterJob.getPrinterJob();
-     PageFormat preformat = pjob.defaultPage();
-     preformat.setOrientation(PageFormat.LANDSCAPE);
-     PageFormat postformat = pjob.pageDialog(preformat);
-     
-     //If user does not hit cancel then print.
-     if (preformat != postformat) {
-         //Set print component
-         pjob.setPrintable(new Printer(frame), postformat);
-         if (pjob.printDialog()) {
-             pjob.print();
-         }
-     }
- }
-}
-**/
 
