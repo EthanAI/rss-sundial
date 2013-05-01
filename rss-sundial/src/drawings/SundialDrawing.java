@@ -1,6 +1,7 @@
 package drawings;
 import java.awt.*;
 import java.awt.geom.Line2D;
+import java.awt.geom.Line2D.Double;
 
 import javax.swing.*;
 
@@ -47,7 +48,7 @@ public class SundialDrawing extends JPanel {
 		}
 //converts the gnomon angle to a y coordinate value
  public double gY(double angle, int length){
-		    double y = 770 - (length * Math.sin(Math.toRadians(90-(angle))));
+		    double y = 210 - (length * Math.sin(Math.toRadians(90-(angle))));
 		    return y;
 		}
  //paint method that is written specifically for the sundial.
@@ -183,7 +184,7 @@ public class SundialDrawing extends JPanel {
 	 //setting up the gnomon triangle
 	 Line2D linega = new Line2D.Double(1340, 5, 1340, 200);
 	 g2.draw(linega);
-	 Line2D linego = new Line2D.Double(1340, 5, 0, 2);
+	 Line2D linego = new Line2D.Double(1340, 5, 0, 5);
 	 g2.draw(linego);
 	 
 	 g2.drawString("a", 1343, 100);
