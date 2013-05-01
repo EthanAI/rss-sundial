@@ -5,25 +5,6 @@
 package calculationsandtests;
 
 public class SundialCalculations {
-	/**
-	 * Main function for testing of the methods. Will need to be removed
-	 * in final code. 
-	 */
-	public static void main(String[] args) {
-		//generate values to test
-		//my house
-		//Standard time zone: UTC/GMT -10 hours 
-		//21.351341,-157.900658
-		//fudge it for HST time zone: 21.351341,-157.49 to get experimental data
-		//debug switch
-		boolean debugMode = false;
-		if(debugMode) {
-			double[] testAngles = getHourLineAngles(21.351341,-157.49, 20130429);
-			int[] testLabels = getLineLabels(21.351341,-157.49, 20130429, 0);
-			for(int i = 0; i < testAngles.length; i++)
-				System.out.println(testAngles[i] + " " + testLabels[i]);
-		}
-	}
 	
 	/*
 	 * getHourLineAngles(double latitude, double longitude, int date)
@@ -228,30 +209,6 @@ public class SundialCalculations {
 	 */
 	protected static double atanDegrees(double tan) {
 		return Math.atan(tan)/Math.PI*180;
-	}
-	
-	/*
-	 * Used for testing the SundialCalculations class. Actual user input will be handled by
-	 * the SundialGenerator.java class
-	 */
-	protected static double getLongitude() {
-		return -157;
-	}
-	
-	/*
-	 * Used for testing the SundialCalculations class. Actual user input will be handled by
-	 * the SundialGenerator.java class
-	 */
-	protected static double getLatitude() {
-		return 45;
-	}
-	
-	/*
-	 * Used for testing the SundialCalculations class. Actual user input will be handled by
-	 * the SundialGenerator.java class
-	 */
-	protected static int getDate() {
-		return 20131102;
 	}
 	
 	/*
